@@ -1,0 +1,9 @@
+- if @post.errors.any?
+  - @post.errors.full_messages.each do |msg|
+    = msg
+= form_tag(posts_path, method: 'post')
+= label_tag(:title, "Title")
+= text_field_tag(:title)
+= label_tag(:content, "Content")
+= text_area_tag(:content)
+= submit_tag("Save")

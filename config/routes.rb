@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root 'post#index'
+  resources :posts, only: [:index, :new, :create, :show, :edit, :update]
 end
