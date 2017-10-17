@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 50em;
+    border: 1px solid #666;
+}
+
+th, td {
+    padding: 0.1em 1em;
+}
+
+col {
+    border-right: 1px solid #ccc;
+}
