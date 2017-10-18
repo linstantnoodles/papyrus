@@ -25,6 +25,10 @@
     border: 1px solid #666;
 }
 
+.admin_content {
+    margin-top: 10px;
+}
+
 th, td {
     padding: 0.1em 1em;
 }

@@ -31,13 +31,15 @@ Then(/^I should see the edited post$/) do
 end
 
 When(/^I create a new post$/) do
-  visit new_post_path
-  fill_in 'content_text', :with => "PAPYRUS CONTENT!"
+  visit new_admin_post_path
+  fill_in 'title', :with => "test title"
+  fill_in 'content', :with => "test content"
+
   click_on 'Save'
 end
 
 Then(/^it should be visible$/) do
-  expect(page).to have_content("PAPYRUS CONTENT!")
+  expect(page).to have_content("test title")
 end
 
 When(/^I delete a post$/) do
@@ -50,5 +52,5 @@ When(/^I delete a post$/) do
 end
 
 Then(/^I should not see the post$/) do
-  expect(page).not_to have_contentn(@post.title)
+  expect(page).not_to have_content(@post.title)
 end
