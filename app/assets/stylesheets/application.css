@@ -19,7 +19,7 @@
     padding: 0;
 }
 
-table {
+.admin_posts {
     border-collapse: collapse;
     width: 50em;
     border: 1px solid #666;
@@ -31,4 +31,20 @@ th, td {
 
 col {
     border-right: 1px solid #ccc;
+}
+
+textarea {
+  display : block;
+
+  padding : 10px;
+  margin  : 10px 0 0 -10px;
+  width   : 340px;
+  height  : 360px;
+
+  resize  : none;
+  overflow: auto;
+}
+
+label {
+    display: block;
 }

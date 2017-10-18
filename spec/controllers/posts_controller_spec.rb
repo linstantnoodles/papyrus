@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PostsController, :type => :controller do
+RSpec.describe Admin::PostsController, :type => :controller do
   describe '#show' do
    it 'it renders the post' do
       my_post = Post.new(title: 'test-title', content: 'test-content')
@@ -25,7 +25,7 @@ RSpec.describe PostsController, :type => :controller do
         }
 
         expect(my_post.reload.title).to eq('new title')
-        expect(response).to redirect_to(posts_path)
+        expect(response).to redirect_to(admin_posts_path)
       end
     end
 
@@ -60,7 +60,7 @@ RSpec.describe PostsController, :type => :controller do
         'content' => 'test content'
       }
 
-      expect(response).to redirect_to(posts_path)
+      expect(response).to redirect_to(admin_posts_path)
     end
 
     context 'missing required fields' do
@@ -72,6 +72,17 @@ RSpec.describe PostsController, :type => :controller do
 
         expect(response).to render_template(:new)
       end
+    end
+  end
+
+  describe '#destroy' do
+    it 'redirects to index' do
+        my_post = Post.new(title: 'test-title', content: 'test-content')
+        my_post.save
+        post :destroy, params: {
+          'id' => my_post.id
+        }
+        expect(response).to redirect_to(admin_posts_path)
     end
   end
 end

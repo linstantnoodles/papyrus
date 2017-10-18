@@ -4,3 +4,4 @@
 = label_tag(:content, "Content")
 = text_area_tag(:content, @post.content)
 = submit_tag("Save")
+= button_to 'Delete', admin_post_path(@post), method: 'delete'

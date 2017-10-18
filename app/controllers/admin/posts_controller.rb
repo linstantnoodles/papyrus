@@ -1,3 +1,6 @@
+require 'rouge'
+require 'rouge/plugins/redcarpet'
+
 module Admin
   class PostsController < ApplicationController
     def index
@@ -33,6 +36,12 @@ module Admin
       else
         render :new
       end
+    end
+
+    def destroy
+      @post = Post.find_by_id!(params[:id])
+      @post.destroy
+      redirect_to admin_posts_path
     end
 
     private
