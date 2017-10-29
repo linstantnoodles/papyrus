@@ -1,8 +1,7 @@
-require 'rouge'
-require 'rouge/plugins/redcarpet'
-
 module Admin
   class PostsController < ApplicationController
+    before_action :authenticate
+
     def index
       @posts = Post.all
     end
@@ -12,8 +11,7 @@ module Admin
     end
 
     def show
-      @post = Post.find_by_id!(params[:id])
-      @output = render_as_markdown(@post.content).html_safe
+      @post = PostDecorator.new(post: Post.find_by_id!(params[:id]))
     end
 
     def edit
@@ -44,29 +42,8 @@ module Admin
       redirect_to admin_posts_path
     end
 
-    private
-
-    def render_as_markdown(content)
-      renderer = HTML
-      markdown = Redcarpet::Markdown.new(renderer, extensions = {
-        fenced_code_blocks: true
-      })
-      markdown.render(content)
-    end
-
-    class HTML < Redcarpet::Render::HTML
-      include Rouge::Plugins::Redcarpet
-      def block_code(code, language)
-        theme = Rouge::Themes::Github
-        formatter = Rouge::Formatters::HTMLInline.new(theme)
-        formatter = Rouge::Formatters::HTMLTable.new(formatter, opts={
-          table_class: 'rouge-table',
-          gutter_class: 'rouge-gutter',
-          code_class: 'rouge-code'
-        })
-        lexer = Rouge::Lexers.const_get(language.capitalize.to_s).new
-        formatter.format(lexer.lex(code))
-      end
+    def authenticate
+      redirect_to posts_path unless session[:user_id]
     end
   end
 end

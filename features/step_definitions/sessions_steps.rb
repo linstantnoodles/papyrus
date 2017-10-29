@@ -4,7 +4,7 @@ end
 
 When(/^I submit the login form$/) do
   visit login_path
-  fill_in 'username', :with => @user.name
+  fill_in 'name', :with => @user.name
   fill_in 'password', :with => @user.password
 end
 
