@@ -6,6 +6,7 @@ Scenario: Viewing all posts
     Then I should see all of my posts
 
 Scenario: Creating a new post
+    Given I am a logged in admin
     When I create a new post
     Then it should be visible
 

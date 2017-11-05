@@ -1,7 +1,7 @@
 = form_tag(admin_post_path, method: 'put')
 = label_tag(:title, "Title")
 = text_field_tag(:title, @post.title)
-= label_tag(:content, "Content")
-= text_area_tag(:content, @post.content)
+= label_tag(:content, "Content", for: 'post_content')
+= text_area_tag(:content, @post.content, id: 'post_content')
 = submit_tag("Save")
-= button_to 'Delete', admin_post_path(@post), method: 'delete'
+= link_to 'Delete', admin_post_path(@post), method: 'delete'

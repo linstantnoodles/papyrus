@@ -1,5 +1,6 @@
 module Admin
   class PostsController < ApplicationController
+    layout 'admin_posts'
     before_action :authenticate
 
     def index
@@ -42,8 +43,12 @@ module Admin
       redirect_to admin_posts_path
     end
 
+    def current_user
+      @current_user ||= User.find_by_id(session[:user_id])
+    end
+
     def authenticate
-      redirect_to posts_path unless session[:user_id]
+      redirect_to login_path unless current_user
     end
   end
 end

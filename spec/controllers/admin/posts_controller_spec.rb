@@ -4,7 +4,7 @@ RSpec.describe Admin::PostsController, :type => :controller do
   context 'when session does not exist' do
     it 'redirects to posts' do
       get :index
-      expect(response).to redirect_to(posts_path)
+      expect(response).to redirect_to(login_path)
     end
   end
 

@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %title Papyrus
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    #branding
+      #logo
+        %span A.LIN
+      - if @current_user.present?
+        = link_to 'Logout', logout_path
+    #container
+      #content
+        = yield

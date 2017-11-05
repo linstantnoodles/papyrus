@@ -15,7 +15,7 @@ class PostDecorator
   end
 
   def content
-    render_as_markdown(@post.content).html_safe
+    render_as_markdown(@post.content)
   end
 
   def render_as_markdown(content)
@@ -23,7 +23,7 @@ class PostDecorator
     markdown = Redcarpet::Markdown.new(renderer, extensions = {
       fenced_code_blocks: true
     })
-    markdown.render(content)
+    markdown.render(content).html_safe
   end
 
   class HTML < Redcarpet::Render::HTML
