@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
-  root to: 'posts#index'
+  root to: 'brand/posts#index'
 
   namespace :admin do
     resources :posts
   end
 
-  resources :posts, only: [:index, :show]
+  scope module: 'brand' do
+    resources :posts, only: %i[index show]
+  end
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: %i[new create destroy]
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'
 end

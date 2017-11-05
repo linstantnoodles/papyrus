@@ -4,14 +4,15 @@
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     %title Papyrus
     = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'brand', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     #branding
       #logo
-        %span A.LIN
+        %a{href: root_path}
+          %span A.LIN
       - if @current_user.present?
-        = link_to 'Logout', logout_path
+        = link_to 'Logout', logout_path, id: 'logout-btn'
     #container
       #content
         = yield

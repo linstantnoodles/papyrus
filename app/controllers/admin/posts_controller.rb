@@ -1,6 +1,6 @@
 module Admin
   class PostsController < ApplicationController
-    layout 'admin_posts'
+    layout 'admin'
     before_action :authenticate
 
     def index
