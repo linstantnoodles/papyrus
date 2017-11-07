@@ -15,19 +15,23 @@
  *= require_self
  */
 
-a.btn {
+.btn {
     display: block;
     width: 6em;
     padding: 0.2em;
     line-height: 1.4;
-    background-color: #94B8E9;
+    background-color: black;
     border: 1px solid black;
-    color: #000;
+    color: #fff;
     text-decoration: none;
     text-align: center;
 }
 
-a.btn:hover {
-    background-color: #369;
-    color: #fff;
+.btn:hover {
+    background-color: white;
+    color: black;
+}
+
+.form-control {
+  margin-bottom: 10px;
 }

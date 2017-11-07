@@ -1,8 +1,10 @@
 - flash.each do |name, msg|
   %p=msg
 = form_tag(sessions_path, method: 'post')
-= label_tag(:name, "Username")
-= text_field_tag(:name)
-= label_tag(:password, "Password")
-= password_field_tag(:password)
-= submit_tag("Login")
+.form-control
+  = label_tag(:name, "Username")
+  = text_field_tag(:name)
+.form-control
+  = label_tag(:password, "Password")
+  = password_field_tag(:password)
+= submit_tag("Login", id: 'login-btn', class: 'btn')

@@ -19,7 +19,7 @@ class PostDecorator
   end
 
   def render_as_markdown(content)
-    renderer = HTML
+    renderer = HTML.new(link_attributes: { target: '_blank' })
     markdown = Redcarpet::Markdown.new(renderer, extensions = {
       fenced_code_blocks: true
     })

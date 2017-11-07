@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  layout 'admin'
+  before_action :authenticate
+
   def new
   end
 
@@ -16,5 +19,13 @@ class SessionsController < ApplicationController
   def destroy
     session.clear
     redirect_to root_path
+  end
+
+  def current_user
+    @current_user ||= User.find_by_id(session[:user_id])
+  end
+
+  def authenticate
+    redirect_to admin_posts_path if current_user
   end
 end

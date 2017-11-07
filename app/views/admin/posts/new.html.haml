@@ -2,8 +2,10 @@
   - @post.errors.full_messages.each do |msg|
     %p=msg
 = form_tag(admin_posts_path, method: 'post')
-= label_tag(:title, "Title")
-= text_field_tag(:title)
-= label_tag(:content, "Content")
-= text_area_tag(:content)
-= submit_tag("Save")
+.form-control
+  = label_tag(:title, "Title", for: 'edit-entry-title')
+  = text_field_tag(:title, nil, id: 'edit-entry-title')
+.form-control
+  = label_tag(:content, "Content", for: 'edit-entry-content')
+  = text_area_tag(:content, nil, id: 'edit-entry-content' )
+= submit_tag("Save", class: 'btn')

@@ -12,3 +12,11 @@ end
 Then(/^I am logged in$/) do
   expect(page).to have_content('Logout')
 end
+
+When(/^I visit login$/) do
+  visit login_path
+end
+
+Then(/^I redirected to admin home page$/) do
+  expect(page).to have_content('New Post')
+end
