@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   layout 'admin'
-  before_action :authenticate
+  before_action :authenticate, only: [:new, :create]
 
   def new
   end

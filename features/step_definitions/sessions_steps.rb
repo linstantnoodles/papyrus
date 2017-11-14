@@ -20,3 +20,12 @@ end
 Then(/^I redirected to admin home page$/) do
   expect(page).to have_content('New Post')
 end
+
+When(/^I click logout$/) do
+  visit admin_posts_path
+  click_on 'Logout'
+end
+
+Then(/^I redirected to root page$/) do
+  expect(page).to have_content('Articles')
+end

@@ -9,3 +9,8 @@ Scenario: logged in
     Given I am a logged in admin
     When I visit login
     Then I redirected to admin home page
+
+Scenario: logging out
+    Given I am a logged in admin
+    When I click logout
+    Then I redirected to root page
