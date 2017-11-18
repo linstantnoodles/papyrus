@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   layout 'admin'
-  before_action :authenticate, only: [:new, :create]
+  before_action :check_authenticated, only: [:new, :create]
 
   def new
   end
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
     @current_user ||= User.find_by_id(session[:user_id])
   end
 
-  def authenticate
+  def check_authenticated
     redirect_to admin_posts_path if current_user
   end
 end
