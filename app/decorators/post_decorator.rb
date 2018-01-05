@@ -19,15 +19,16 @@ class PostDecorator
   end
 
   def render_as_markdown(content)
-    renderer = HTML.new(link_attributes: { target: '_blank' })
+    renderer = MyHTML.new(link_attributes: { target: '_blank' })
     markdown = Redcarpet::Markdown.new(renderer, extensions = {
       fenced_code_blocks: true
     })
     markdown.render(content).html_safe
   end
 
-  class HTML < Redcarpet::Render::HTML
+  class MyHTML < Redcarpet::Render::HTML
     include Rouge::Plugins::Redcarpet
+
     def block_code(code, language)
       theme = Rouge::Themes::Github
       formatter = Rouge::Formatters::HTMLInline.new(theme)
@@ -37,7 +38,8 @@ class PostDecorator
         code_class: 'rouge-code'
       })
       lexer = Rouge::Lexers.const_get(language.capitalize.to_s).new
-      formatter.format(lexer.lex(code))
+      formatted_code_block = formatter.format(lexer.lex(code))
+      %(<div class="code-container">#{formatted_code_block}</div>)
     end
   end
 end
