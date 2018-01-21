@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
 
   scope module: 'brand' do
+    get 'about', to: 'pages#about'
     resources :posts, only: %i[index show]
   end
 

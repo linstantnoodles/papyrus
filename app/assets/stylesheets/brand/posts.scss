@@ -50,3 +50,34 @@ h1,h2,h3,h4 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+/* Navigation */
+
+#navigation {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  background: #FAA819;
+  float: left;
+}
+
+#navigation li {
+  float: left;
+  padding: 0 5px;
+}
+
+#navigation a {
+ text-decoration: none;
+ color: #fff;
+}
+
+#navigation a:hover {
+  color: #333;
+}
+
+#index a.index,
+#about a.about {
+  color: #333;
+  cursor: default;
+}
