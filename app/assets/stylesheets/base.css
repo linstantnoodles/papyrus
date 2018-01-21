@@ -25,3 +25,11 @@
 ol, ul {
     list-style-position: inside;
 }
+
+code.prettyprint {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 95%;
+    background-color: #f6f8fa;
+    border-radius: 3px;
+}
