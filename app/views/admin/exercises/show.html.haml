@@ -1,0 +1,4 @@
+%h1{id: 'exercise-title'}=@exercise.title
+#exercise-description=@exercise.description
+#exercise-test=@exercise.test
+%span="Last updated: #{@exercise.updated_at.strftime("%m/%d/%Y")}"
