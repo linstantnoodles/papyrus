@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :posts
-    resources :exercises
+    resources :exercises do
+      resources :submissions
+    end
   end
 
   scope module: 'brand' do

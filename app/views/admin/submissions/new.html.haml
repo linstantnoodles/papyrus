@@ -1,0 +1,13 @@
+%h1{id: 'exercise-title'}=@submission.exercise.title
+#exercise-description=@submission.exercise.description
+#exercise-test=@submission.exercise.test
+
+%h2 New Submission
+- if @submission.errors.any?
+  - @submission.errors.full_messages.each do |msg|
+    %p=msg
+= form_tag(admin_exercise_submissions_path(exercise_id: @submission.exercise.id, method: 'post'))
+.form-control
+  = label_tag(:content, "Content", for: 'edit-submission-content')
+  = text_field_tag(:content, nil, id: 'edit-submission-content')
+= submit_tag("Save", class: 'btn')
