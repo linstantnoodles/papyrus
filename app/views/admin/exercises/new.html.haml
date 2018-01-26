@@ -1,0 +1,14 @@
+- if @exercise.errors.any?
+  - @exercise.errors.full_messages.each do |msg|
+    %p=msg
+= form_tag(admin_exercises_path, method: 'post')
+.form-control
+  = label_tag(:title, "Title", for: 'edit-exercise-title')
+  = text_field_tag(:title, nil, id: 'edit-exercise-title')
+.form-control
+  = label_tag(:description, "Description", for: 'edit-exercise-description')
+  = text_area_tag(:description, nil, id: 'edit-exercise-description' )
+.form-control
+  = label_tag(:test, "Test", for: 'edit-exercise-test')
+  = text_area_tag(:test, nil, id: 'edit-exercise-test' )
+= submit_tag("Save", class: 'btn')

@@ -1,0 +1,18 @@
+%h1 Exercises
+= link_to 'New Exercise', new_admin_exercise_path, method: 'get', class: 'btn'
+%table.exercises
+  %thead
+    %tr
+      %th Title
+      %th Created at
+      %th Updated at
+      %th Edit
+      %th Submission
+  %tbody
+    - @exercises.each_with_index do |exercise, index|
+      %tr
+        %td=link_to exercise.title, admin_exercise_path(id: exercise.id)
+        %td=exercise.created_at.strftime("%m/%d/%Y")
+        %td=exercise.updated_at.strftime("%m/%d/%Y")
+        %td=link_to 'Edit', edit_admin_exercise_path(id: exercise.id)
+        %td=link_to 'New Submission', new_admin_exercise_submission_path(exercise_id: exercise.id)

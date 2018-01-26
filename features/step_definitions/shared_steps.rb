@@ -10,6 +10,10 @@ When(/^I visit the login page$/) do
   visit login_path
 end
 
+Given(/^I visit the admin exercises page$/) do
+  visit admin_exercises_path
+end
+
 When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field_name, text|
   fill_in field_name, :with => text
 end
