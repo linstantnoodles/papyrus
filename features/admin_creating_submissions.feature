@@ -5,10 +5,10 @@ Feature: Admin creating a submission to an exercise
     Scenario: Admin creating a submission
         Given I am a logged in admin
         And an exercise with title "Wow" exists
-        And the exercise "Wow" has description "What is a + b?"
-        And the exercise "Wow" has test "expect(ur_fn(1,2)).to eq(3)"
+        And the exercise "Wow" has description "truth."
+        And the exercise "Wow" has test "describe 'truth' do it 'gives truth' do expect(x).to eq(true) end end"
         When I visit the admin exercises page
         And I click "New Submission"
-        And I fill in "content" with "def ur_fn(a,b):\n  a+b"
+        And I fill in "content" with "x = true"
         And I click "Save"
-        Then I should see "Good Work!"
+        Then I should see "1 example, 0 failures"
