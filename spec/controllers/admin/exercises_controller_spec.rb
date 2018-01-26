@@ -46,5 +46,38 @@ RSpec.describe Admin::ExercisesController, :type => :controller do
         end
       end
     end
+
+    describe '#update' do
+      context 'when params valid' do
+        it 'redirects to index' do
+          exercise = Exercise.new(title: 'test-title', description: 'desc', test: 'test-content')
+          exercise.save
+          post :update, params: {
+            'id' => exercise.id,
+            'title' => 'new title',
+            'description' => 'desc',
+            'test' => 'test-content'
+          }
+
+          expect(exercise.reload.title).to eq('new title')
+          expect(response).to redirect_to(admin_exercises_path)
+        end
+      end
+
+      context 'when params invalid' do
+        it 'renders edit' do
+          exercise = Exercise.new(title: 'test-title', description: 'desc', test: 'test-content')
+          exercise.save
+          post :update, params: {
+            'id' => exercise.id,
+            'title' => 'new title',
+            'description' => '',
+            'test' => ''
+          }
+
+          expect(response).to render_template(:edit)
+        end
+      end
+    end
   end
 end

@@ -1,3 +1,5 @@
+require 'tempfile'
+
 module Admin
   class SubmissionsController < ApplicationController
     layout 'admin'
@@ -14,7 +16,19 @@ module Admin
     def create
       @submission = Submission.new(content: params[:content], exercise_id: params[:exercise_id])
       if @submission.save
-        redirect_to admin_exercises_path
+        test_code = Exercise.find_by_id(params[:exercise_id]).test
+        submission_content = @submission.content
+        file = Tempfile.new(['spec_file', 'rb'])
+        output = ''
+        begin
+          file.write("#{submission_content}\n#{test_code}")
+          file.rewind
+          output = `rspec #{file.path}`
+        ensure
+          file.close
+          file.unlink
+        end
+        render :json => {:result => "#{output}"}
       else
         render :new
       end

@@ -9,5 +9,5 @@
 = form_tag(admin_exercise_submissions_path(exercise_id: @submission.exercise.id, method: 'post'))
 .form-control
   = label_tag(:content, "Content", for: 'edit-submission-content')
-  = text_field_tag(:content, nil, id: 'edit-submission-content')
+  = text_area_tag(:content, nil, id: 'edit-submission-content')
 = submit_tag("Save", class: 'btn')

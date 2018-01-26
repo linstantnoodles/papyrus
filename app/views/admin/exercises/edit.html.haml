@@ -1,0 +1,8 @@
+= form_tag(admin_exercise_path, method: 'put')
+= label_tag(:title, "Title")
+= text_field_tag(:title, @exercise.title)
+= label_tag(:description, "Description", for: 'exercise_description')
+= text_area_tag(:description, @exercise.description, id: 'exercise_description')
+= label_tag(:test, "Test", for: 'post_test')
+= text_area_tag(:test, @exercise.test, id: 'post_test')
+= submit_tag("Save")
