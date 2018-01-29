@@ -28,17 +28,26 @@ RSpec.describe Post, :type => :model do
     expect(subject).to_not be_valid
   end
 
-  describe 'is_published?' do
+  it "should default to draft if stage is not set" do
+    post = Post.new(
+      title: 'test-title',
+      content: 'test-content'
+    )
+
+    expect(post.stage).to eq(Post::Stages::DRAFT)
+  end
+
+  describe 'published?' do
     context 'when post is in draft stage' do
       it 'returns false' do
         subject.stage = Post::Stages::DRAFT
-        expect(subject.is_published?).to eq(false)
+        expect(subject.published?).to eq(false)
       end
     end
     context 'when post is in publish stage' do
       it 'returns true' do
         subject.stage = Post::Stages::PUBLISHED
-        expect(subject.is_published?).to eq(true)
+        expect(subject.published?).to eq(true)
       end
     end
   end
