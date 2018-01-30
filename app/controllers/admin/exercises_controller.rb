@@ -1,3 +1,4 @@
+require 'rouge'
 module Admin
   class ExercisesController < ApplicationController
     layout 'admin'
@@ -35,6 +36,14 @@ module Admin
       else
         render :edit
       end
+    end
+
+    def practice
+      @exercise = Exercise.find_by_id(params[:id])
+      theme = Rouge::Themes::Github
+      formatter = Rouge::Formatters::HTMLInline.new(theme)
+      lexer = Rouge::Lexers::Ruby.new
+      @stuff = formatter.format(lexer.lex(@exercise.test)).html_safe
     end
 
     def authenticate

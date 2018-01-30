@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       end
     end
     resources :exercises do
+      member do
+        get 'practice', to: 'exercises#practice'
+      end
       resources :submissions
     end
   end

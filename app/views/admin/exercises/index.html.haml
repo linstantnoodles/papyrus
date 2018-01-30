@@ -15,4 +15,4 @@
         %td=exercise.created_at.strftime("%m/%d/%Y")
         %td=exercise.updated_at.strftime("%m/%d/%Y")
         %td=link_to 'Edit', edit_admin_exercise_path(id: exercise.id)
-        %td=link_to 'New Submission', new_admin_exercise_submission_path(exercise_id: exercise.id)
+        %td=link_to 'Practice', practice_admin_exercise_path(id: exercise.id)
