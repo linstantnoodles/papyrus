@@ -11,4 +11,4 @@
     - @posts.each_with_index do |post, index|
       %tr
         %td=link_to post.title, post_path(id: post.id)
-        %td=post.updated_at.strftime("%m/%d/%Y")
+        %td=post.published_at.strftime("%m/%d/%Y")

@@ -64,6 +64,19 @@ RSpec.describe Post, :type => :model do
     end
   end
 
+  describe '#unpublish' do
+    it 'should update stage to be draft' do
+      post = Post.new(
+          title: 'test-title',
+          content: 'test-content',
+          stage: Post::Stages::PUBLISHED
+        )
+
+      post.unpublish
+      expect(post.stage).to eq(Post::Stages::DRAFT)
+    end
+  end
+
   describe '#published?' do
     context 'when post is in draft stage' do
       it 'returns false' do

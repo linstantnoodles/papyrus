@@ -24,6 +24,10 @@ class Post < ApplicationRecord
     self.published_at = Time.now
   end
 
+  def unpublish
+    self.stage = Stages::DRAFT
+  end
+
   private
 
     def set_default_stage

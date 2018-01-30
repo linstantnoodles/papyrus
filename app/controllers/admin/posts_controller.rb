@@ -44,14 +44,16 @@ module Admin
     end
 
     def publish
-      @post = Post.find_by_id!(params[:id])
-      @post.update(stage: Post::Stages::PUBLISHED)
+      post = Post.find_by_id!(params[:id])
+      post.publish
+      post.save
       redirect_to admin_posts_path
     end
 
     def unpublish
-      @post = Post.find_by_id!(params[:id])
-      @post.update(stage: Post::Stages::DRAFT)
+      post = Post.find_by_id!(params[:id])
+      post.unpublish
+      post.save
       redirect_to admin_posts_path
     end
 
