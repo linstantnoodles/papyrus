@@ -9,7 +9,8 @@ end
 
 Given(/^the post "([^"]*)" is published$/) do |title|
   post = Post.find_by_title(title)
-  post.update(stage: Post::Stages::PUBLISHED)
+  post.publish
+  post.save
 end
 
 Given(/^the post "([^"]*)" has content "([^"]*)"$/) do |title, content|

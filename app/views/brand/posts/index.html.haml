@@ -3,4 +3,4 @@
   - @posts.each_with_index do |post, index|
     %article
       %h2=link_to post.title, post_path(id: post.id), class: 'button'
-      %p=post.updated_at.strftime("%m/%d/%Y")
+      %p=post.published_at.strftime("%m/%d/%Y")
