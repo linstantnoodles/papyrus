@@ -28,6 +28,11 @@ RSpec.describe Post, :type => :model do
     expect(subject).to_not be_valid
   end
 
+  it "is not valid with an undefined stage" do
+    subject.stage = 'not a real stage'
+    expect(subject).to_not be_valid
+  end
+
   it "should default to draft if stage is not set" do
     post = Post.new(
       title: 'test-title',
@@ -37,7 +42,29 @@ RSpec.describe Post, :type => :model do
     expect(post.stage).to eq(Post::Stages::DRAFT)
   end
 
-  describe 'published?' do
+  describe '#publish' do
+    it 'should update stage to published' do
+      post = Post.new(
+        title: 'test-title',
+        content: 'test-content'
+      )
+
+      post.publish
+      expect(post.stage).to eq(Post::Stages::PUBLISHED)
+    end
+
+    it 'should update published_at date' do
+      post = Post.create(
+        title: 'test-title',
+        content: 'test-content'
+      )
+
+      post.publish
+      expect(post.published_at).to be > post.created_at
+    end
+  end
+
+  describe '#published?' do
     context 'when post is in draft stage' do
       it 'returns false' do
         subject.stage = Post::Stages::DRAFT

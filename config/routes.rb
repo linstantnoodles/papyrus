@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   root to: 'brand/posts#index'
 
   namespace :admin do
-    resources :posts
+    resources :posts do
+      member do
+        get 'publish', to: 'posts#publish'
+        get 'unpublish', to: 'posts#unpublish'
+      end
+    end
     resources :exercises do
       resources :submissions
     end

@@ -76,6 +76,32 @@ RSpec.describe Admin::PostsController, :type => :controller do
       end
     end
 
+    describe '#publish' do
+      it 'publishes the post' do
+          my_post = Post.new(title: 'test-title', content: 'test-content')
+          my_post.save
+          get :publish, params: {
+            'id' => my_post.id
+          }
+
+          expect(my_post.reload.stage).to eq(Post::Stages::PUBLISHED)
+          expect(response).to redirect_to(admin_posts_path)
+      end
+    end
+
+    describe '#unpublish' do
+      it 'unpublishes the post' do
+        my_post = Post.new(title: 'test-title', content: 'test-content')
+        my_post.save
+        get :unpublish, params: {
+          'id' => my_post.id
+        }
+
+        expect(my_post.reload.stage).to eq(Post::Stages::DRAFT)
+        expect(response).to redirect_to(admin_posts_path)
+      end
+    end
+
     describe '#destroy' do
       it 'redirects to index' do
           my_post = Post.new(title: 'test-title', content: 'test-content')

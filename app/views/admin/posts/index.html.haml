@@ -7,6 +7,7 @@
       %th Created at
       %th Updated at
       %th Action
+      %th Publish / Unpublish
   %tbody
     - @posts.each_with_index do |post, index|
       %tr
@@ -14,3 +15,8 @@
         %td=post.created_at.strftime("%m/%d/%Y")
         %td=post.updated_at.strftime("%m/%d/%Y")
         %td=link_to 'Edit', edit_admin_post_path(id: post.id)
+        - if post.published?
+          %td=link_to 'Unpublish', unpublish_admin_post_path(id: post.id)
+        - else
+          %td=link_to 'Publish', publish_admin_post_path(id: post.id)
+

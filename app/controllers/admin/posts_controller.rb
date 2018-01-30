@@ -43,6 +43,18 @@ module Admin
       redirect_to admin_posts_path
     end
 
+    def publish
+      @post = Post.find_by_id!(params[:id])
+      @post.update(stage: Post::Stages::PUBLISHED)
+      redirect_to admin_posts_path
+    end
+
+    def unpublish
+      @post = Post.find_by_id!(params[:id])
+      @post.update(stage: Post::Stages::DRAFT)
+      redirect_to admin_posts_path
+    end
+
     def current_user
       @current_user ||= User.find_by_id(session[:user_id])
     end

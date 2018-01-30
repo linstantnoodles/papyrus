@@ -1,6 +1,6 @@
 Feature: View posts
 
-    As a visitor I should be able to see a list of all posts and read a single post from the home page
+    As a visitor I should be able to see a list of all published posts and read a single post from the home page
 
 Scenario: Viewing a list of all posts
     Given a post with title "Hello" exists
