@@ -7,7 +7,8 @@
       %th Created at
       %th Updated at
       %th Edit
-      %th Submission
+      %th Practice
+      %th Submissions
   %tbody
     - @exercises.each_with_index do |exercise, index|
       %tr
@@ -16,3 +17,4 @@
         %td=exercise.updated_at.strftime("%m/%d/%Y")
         %td=link_to 'Edit', edit_admin_exercise_path(id: exercise.id)
         %td=link_to 'Practice', practice_admin_exercise_path(id: exercise.id)
+        %td=link_to 'Submissions', admin_exercise_submissions_path(exercise_id: exercise.id)

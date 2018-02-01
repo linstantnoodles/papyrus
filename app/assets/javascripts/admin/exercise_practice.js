@@ -3,7 +3,7 @@ $(document).on('turbolinks:load', function() {
         var content = $("#submission-content textarea").val();
         var exerciseId = $("#submission-content #exercise_id").val();
         var url = "/admin/exercises/" + exerciseId + "/submissions";
-        $('#progress-spinner').addClass('bar');
+        $('#result-loader').addClass('bar');
         var request = $.ajax({
           url: url,
           method: "POST",
@@ -15,10 +15,10 @@ $(document).on('turbolinks:load', function() {
         });
         request.done(function( msg ) {
           $("#test-results pre").html(msg.result);
-          $('#progress-spinner').removeClass('bar');
+          $('#result-loader').removeClass('bar');
         });
         request.fail(function( jqXHR, textStatus, errorThrown) {
-          $('#progress-spinner').removeClass('bar');
+          $('#result-loader').removeClass('bar');
         });
     });
 

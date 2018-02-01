@@ -6,7 +6,7 @@ module Admin
     before_action :authenticate
 
     def index
-      @submissions = Submission.all
+      @submissions = Submission.where(exercise_id: params[:exercise_id]).order('created_at DESC')
     end
 
     def new
