@@ -58,16 +58,16 @@ RSpec.describe Admin::SubmissionsController, :type => :controller do
         expect(response.body).to include('1 example, 0 failures')
       end
 
-      # context 'missing required fields' do
-      #   it 'renders new' do
-      #     response = post :create, params: {
-      #       'title' => 'test title',
-      #       'description' => 'test description'
-      #     }
+      context 'missing required fields' do
+        it 'returns error' do
+          response = post :create, params: {
+            'content' => '',
+            'exercise_id' => @exercise.id
+          }
 
-      #     expect(response).to render_template(:new)
-      #   end
-      # end
+          expect(response.body).to include("{\"errors\":[\"Content can't be blank\"]}")
+        end
+      end
     end
   end
 end

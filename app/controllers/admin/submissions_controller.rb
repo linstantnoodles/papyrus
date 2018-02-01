@@ -30,7 +30,7 @@ module Admin
         end
         render :json => {:result => "#{output}"}
       else
-        render :new
+        render :json => {:errors => @submission.errors.full_messages }, :status => 400
       end
     end
 

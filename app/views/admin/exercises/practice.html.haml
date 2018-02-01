@@ -1,14 +1,15 @@
 #submission-content
+  %p
   .form-control
-    = label_tag(:content, "Content", for: 'edit-submission-content')
     = text_area_tag(:content, nil, id: 'edit-submission-content')
     = hidden_field_tag('exercise_id', @exercise.id)
-    = button_tag('Submit')
+    = button_tag('Submit', class: 'btn')
 #exercise-content
-  %h1{id: 'exercise-title'}=@exercise.title
+  %h1=@exercise.title
   #exercise-description=@exercise.description
+  %br
   %pre
     #exercise-test=@stuff
-  %span="Last updated: #{@exercise.updated_at.strftime("%m/%d/%Y")}"
+#progress-spinner
 #test-results
   %pre
