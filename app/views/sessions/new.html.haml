@@ -1,6 +1,7 @@
 #login
+  %h2 Welcome!
   - flash.each do |name, msg|
-    %p=msg
+    %p.error-message=msg
   = form_tag(sessions_path, method: 'post')
   .step
     %span

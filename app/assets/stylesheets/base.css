@@ -3,6 +3,8 @@
     padding: 0;
 }
 
+/* Code blocks */
+
 .code-container {
     overflow-x: auto;
     margin-top: 10px;
@@ -33,3 +35,4 @@ code.prettyprint {
     background-color: #f6f8fa;
     border-radius: 3px;
 }
+
