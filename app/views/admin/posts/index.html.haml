@@ -1,22 +1,13 @@
 %h1 Posts
 = link_to 'New Post', new_admin_post_path, method: 'get', class: 'btn'
 %table.posts
-  %thead
-    %tr
-      %th Title
-      %th Created at
-      %th Updated at
-      %th Action
-      %th Publish / Unpublish
   %tbody
     - @posts.each_with_index do |post, index|
       %tr
         %td=link_to post.title, admin_post_path(id: post.id)
-        %td=post.created_at.strftime("%m/%d/%Y")
-        %td=post.updated_at.strftime("%m/%d/%Y")
         %td=link_to 'Edit', edit_admin_post_path(id: post.id)
         - if post.published?
-          %td=link_to 'Unpublish', unpublish_admin_post_path(id: post.id)
+          %td=link_to 'Unpublish', unpublish_admin_post_path(id: post.id), data: {confirm:'Are you sure?'}
         - else
           %td=link_to 'Publish', publish_admin_post_path(id: post.id)
 

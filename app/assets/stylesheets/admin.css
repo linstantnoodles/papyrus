@@ -15,16 +15,10 @@
  *= require_self
  */
 
-.btn {
-    display: block;
-    width: 6em;
-    padding: 0.2em;
-    line-height: 1.4;
-    background-color: black;
-    border: 1px solid black;
-    color: #fff;
-    text-decoration: none;
-    text-align: center;
+html {
+    background: linear-gradient(hsla(0,0%,100%,.3),hsla(0,0%,100%,0));
+    background-color: #e8ebef;
+    background-repeat: no-repeat;
 }
 
 .btn:hover {
@@ -34,4 +28,31 @@
 
 .form-control {
   margin-bottom: 10px;
+}
+
+/* Navigation bar */
+
+#branding {
+  width: 100%;
+  height: 50px;
+}
+
+#logo {
+  padding-top: 15px;
+  padding-left: 15px;
+  float: left;
+}
+
+#logo a {
+  text-decoration: none;
+  color: black;
+  font-size: 25px;
+}
+
+#logout-btn {
+  float: right;
+  color: black;
+  padding-top: 15px;
+  padding-right: 15px;
+  text-decoration: none;
 }

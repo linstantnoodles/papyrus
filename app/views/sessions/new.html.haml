@@ -1,10 +1,13 @@
-- flash.each do |name, msg|
-  %p=msg
-= form_tag(sessions_path, method: 'post')
-.form-control
-  = label_tag(:name, "Username")
-  = text_field_tag(:name)
-.form-control
-  = label_tag(:password, "Password")
-  = password_field_tag(:password)
-= submit_tag("Login", id: 'login-btn', class: 'btn')
+#login
+  %h2 Welcome!
+  - flash.each do |name, msg|
+    %p.error-message=msg
+  = form_tag(sessions_path, method: 'post')
+  .step
+    %span
+      = label_tag(:name, "Username")
+      = text_field_tag(:name, nil, placeholder: 'Username')
+    %span
+      = label_tag(:password, "Password")
+      = password_field_tag(:password, nil, placeholder: 'Password')
+    = submit_tag("Login", id: 'login-btn', class: 'btn')
