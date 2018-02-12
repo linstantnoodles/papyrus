@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130020036) do
+ActiveRecord::Schema.define(version: 20180212143256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20180130020036) do
     t.text "content", null: false
     t.string "stage"
     t.datetime "published_at"
+    t.bigint "post_id"
+    t.index ["post_id"], name: "index_posts_on_post_id"
+  end
+
+  create_table "repetition_routines", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "submissions", force: :cascade do |t|
@@ -47,5 +56,6 @@ ActiveRecord::Schema.define(version: 20180130020036) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "posts", "posts"
   add_foreign_key "submissions", "exercises"
 end

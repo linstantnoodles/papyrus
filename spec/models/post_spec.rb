@@ -42,6 +42,23 @@ RSpec.describe Post, :type => :model do
     expect(post.stage).to eq(Post::Stages::DRAFT)
   end
 
+  it "can have many posts" do
+    post_series = Post.create(title: 'title of my new series', content: 'about my new series')
+    Post.create(title: 'post one', content: 'first post of series', post: post_series)
+    Post.create(title: 'post two', content: 'second post of series', post: post_series)
+
+    expect(post_series.posts.count).to be(2)
+  end
+
+  describe '#series?' do
+    it 'should return true' do
+      post_series = Post.create(title: 'title of my new series', content: 'about my new series')
+      Post.create(title: 'post one', content: 'first post of series', post: post_series)
+
+      expect(post_series.series?).to be(true)
+    end
+  end
+
   describe '#publish' do
     it 'should update stage to published' do
       post = Post.new(

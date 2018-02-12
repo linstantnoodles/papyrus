@@ -13,6 +13,10 @@ class Post < ApplicationRecord
   end
 
   include Stages
+
+  has_many :posts
+  belongs_to :post, optional: true
+
   validates_presence_of :title, :content
   validates_presence_of :stage
   validates :stage, inclusion: { in: Stages.all, message: "%{value} is not a valid stage" }
@@ -26,6 +30,10 @@ class Post < ApplicationRecord
 
   def unpublish
     self.stage = Stages::DRAFT
+  end
+
+  def series?
+    self.posts.present?
   end
 
   private

@@ -12,3 +12,7 @@ Todo:
 * Brand
     * Add ability to add new top level sections. i.e: personal / misc, programming puzzle guides, lifestyle
     * Prototype a new navigation
+
+Next: 
+    * Add UI for adding posts children
+    * Show post series separately
