@@ -33,7 +33,7 @@ class Post < ApplicationRecord
   end
 
   def series?
-    self.posts.present?
+    posts.present?
   end
 
   private
