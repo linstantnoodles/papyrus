@@ -46,6 +46,29 @@ RSpec.describe Admin::PostsController, :type => :controller do
     end
 
     describe '#create' do
+      context 'when post id exists' do
+        it 'creates a new child post' do
+          parent_post = Post.create(title: 'test-title', content: 'test-content')
+          post :create, params: {
+            'title' => 'child title',
+            'content' => 'test content',
+            'post_id' => parent_post.id
+          }
+
+          expect(parent_post.reload.posts.first.title).to eq('child title')
+        end
+
+        it 'redirects to parent post' do
+          parent_post = Post.create(title: 'test-title', content: 'test-content')
+          post :create, params: {
+            'title' => 'child title',
+            'content' => 'test content',
+            'post_id' => parent_post.id
+          }
+
+          expect(response).to redirect_to(admin_post_path(id: parent_post.id))
+        end
+      end
       it 'creates a new post' do
         post :create, params: {
           'title' => 'test title',

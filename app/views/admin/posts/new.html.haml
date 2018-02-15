@@ -2,6 +2,7 @@
   - @post.errors.full_messages.each do |msg|
     %p=msg
 = form_tag(admin_posts_path, method: 'post')
+= hidden_field_tag(:post_id, @post.parent_post&.id)
 .form-control
   = label_tag(:title, "Title", for: 'edit-entry-title')
   = text_field_tag(:title, nil, id: 'edit-entry-title')

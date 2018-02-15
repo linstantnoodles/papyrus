@@ -4,7 +4,7 @@ require 'rouge/plugins/redcarpet'
 class PostDecorator
   attr_reader :post
 
-  delegate :series?, :updated_at, to: :post
+  delegate :id, :series?, :child_posts, :updated_at, to: :post
 
   def initialize(post:)
     @post = post

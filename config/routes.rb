@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         get 'publish', to: 'posts#publish'
         get 'unpublish', to: 'posts#unpublish'
       end
+      resources :posts, only: %i[new create]
     end
     resources :exercises do
       member do

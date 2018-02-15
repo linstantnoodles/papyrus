@@ -16,6 +16,8 @@ class Post < ApplicationRecord
 
   has_many :posts
   belongs_to :post, optional: true
+  alias_attribute :child_posts, :posts
+  alias_attribute :parent_post, :post
 
   validates_presence_of :title, :content
   validates_presence_of :stage

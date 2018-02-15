@@ -8,7 +8,7 @@ module Admin
     end
 
     def new
-      @post = Post.new
+      @post = Post.new(post_id: params[:post_id])
     end
 
     def show
@@ -29,8 +29,9 @@ module Admin
     end
 
     def create
-      @post = Post.new(title: params[:title], content: params[:content])
+      @post = Post.new(title: params[:title], content: params[:content], post_id: params[:post_id])
       if @post.save
+        return redirect_to admin_post_path(id: params[:post_id]) unless params[:post_id].blank?
         redirect_to admin_posts_path
       else
         render :new
