@@ -1,6 +1,8 @@
+= link_to 'New Post', new_admin_post_post_path(post_id: @post.id), method: 'get', class: 'btn'
 %h1{id: 'entry-title'}=@post.title
 #entry-content=@post.content
-%span="Last updated: #{@post.updated_at.strftime("%m/%d/%Y")}"
-= link_to 'New Post', new_admin_post_post_path(post_id: @post.id), method: 'get', class: 'btn'
+%ul
 - @post.child_posts.each do |post|
-  = link_to post.title, admin_post_path(id: post.id)
+  %li
+    = link_to post.title, admin_post_path(id: post.id)
+%span="Last updated: #{@post.updated_at.strftime("%m/%d/%Y")}"

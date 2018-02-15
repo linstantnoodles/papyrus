@@ -11,14 +11,15 @@ Scenario: Creating a post
     And I click "Save"
     Then I should see "Goodbye"
 
-Scenario: Creating a new post in a post series
+Scenario: Creating a child post
     Given I am a logged in admin
-    And a post with title "Hello World Series" exists
-    And the post "Hello World Series" has content "Ready for this?"
+    And a post with title "Parent Hello World" exists
+    And the post "Parent Hello World" has content "Ready for this?"
     When I visit the admin home page
-    And I click "Hello World Series"
+    And I click "Parent Hello World"
     And I click "New Post"
     And I fill in "title" with "First Post"
     And I fill in "content" with "Winning"
     And I click "Save"
+    Then I should see "Parent hello world (Series)"
     Then I should see "First Post"
