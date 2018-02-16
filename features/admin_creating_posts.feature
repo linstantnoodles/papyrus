@@ -17,7 +17,7 @@ Scenario: Creating a child post
     And the post "Parent Hello World" has content "Ready for this?"
     When I visit the admin home page
     And I click "Parent Hello World"
-    And I click "New Post"
+    And I click "New Child Post"
     And I fill in "title" with "First Post"
     And I fill in "content" with "Winning"
     And I click "Save"
