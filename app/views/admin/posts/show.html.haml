@@ -1,8 +1,6 @@
 = link_to 'New Child Post', new_admin_post_post_path(post_id: @post.id), method: 'get', class: 'btn'
 %h1{id: 'entry-title'}=@post.title
 #entry-content=@post.content
-%ul
-- @post.child_posts.each do |post|
-  %li
-    = link_to post.title, admin_post_path(id: post.id)
+.descendent_posts
+  = render partial: 'descendent_posts', locals: { posts: @post.child_posts }
 %span="Last updated: #{@post.updated_at.strftime("%m/%d/%Y")}"
