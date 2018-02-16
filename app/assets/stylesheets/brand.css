@@ -81,7 +81,8 @@ h1,h2,h3,h4 {
 }
 
 #index a.index,
-#about a.about {
+#about a.about,
+#series a.series {
   color: #333;
   cursor: default;
 }

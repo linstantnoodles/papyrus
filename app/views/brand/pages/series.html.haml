@@ -1,0 +1,7 @@
+%h1 Series
+%ul
+  - @posts.each_with_index do |post, index|
+    %article
+      %h2=link_to post.title, post_path(id: post.id), class: 'button'
+      .description
+        %p=post.content
