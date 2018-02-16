@@ -21,5 +21,5 @@ Scenario: Creating a child post
     And I fill in "title" with "First Post"
     And I fill in "content" with "Winning"
     And I click "Save"
-    Then I should see "Parent hello world (Series)"
+    Then I should see "Parent hello world (series)"
     Then I should see "First Post"

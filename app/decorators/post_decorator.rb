@@ -12,7 +12,7 @@ class PostDecorator
 
   def title
     if @post.series?
-      "#{@post.title.capitalize} (Series)"
+      "#{@post.title.capitalize} (series)"
     else
       @post.title.capitalize
     end
