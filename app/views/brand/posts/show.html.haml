@@ -1,7 +1,7 @@
 %h1{id: 'entry-title'}=@post.title
 #entry-content=@post.content
 %span="Last updated: #{@post.updated_at.strftime("%m/%d/%Y")}"
-- if @post.series?
+- if @post.series? && @post.child_posts.select(&:published?).present?
   %h2 Collection
   .descendent_posts
-    = render partial: 'descendent_posts', locals: { posts: @post.child_posts }
+    = render partial: 'descendent_posts', locals: { posts: @post.child_posts.select(&:published?) }

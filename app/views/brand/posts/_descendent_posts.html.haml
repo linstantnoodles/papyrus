@@ -2,4 +2,4 @@
   - posts.each do |post|
     %li
       = link_to post.title, post_path(id: post.id)
-      = render partial: 'descendent_posts', locals: { posts: post.child_posts }
+      = render partial: 'descendent_posts', locals: { posts: post.child_posts.select(&:published?) }
