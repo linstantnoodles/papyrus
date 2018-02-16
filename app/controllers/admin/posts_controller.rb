@@ -8,7 +8,6 @@ module Admin
     end
 
     def new
-      p params
       @post = Post.new(post_id: params[:post_id])
     end
 
