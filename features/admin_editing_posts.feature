@@ -21,3 +21,14 @@ Scenario: Publishing an existing draft post
     And I click "Publish"
     When I visit the home page
     Then I should see "Hello"
+
+Scenario: Adding post to a series
+    Given I am a logged in admin
+    And a post with title "Hello Parent" exists
+    And a post with title "Hello Child" exists
+    When I visit the admin home page
+    And I click "Edit" for row with text "Hello Child"
+    And I select "Hello Parent" for "Parent"
+    And I click "Save"
+    And I click "Hello Parent"
+    Then I should see "Hello Child"

@@ -1,6 +1,8 @@
 = form_tag(admin_post_path, method: 'put')
 = label_tag(:title, "Title")
 = text_field_tag(:title, @post.title)
+= label_tag(:post_id, 'Parent', for: 'post_id')
+= select_tag(:post_id, options_from_collection_for_select(Post.all.order('created_at DESC'), "id", "title"), include_blank: true, prompt: 'Select a parent', id: 'post_id')
 = label_tag(:content, "Content", for: 'post_content')
 = text_area_tag(:content, @post.content, id: 'post_content')
 = submit_tag("Save")

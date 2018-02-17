@@ -30,3 +30,10 @@ Then(/^I should not see "([^"]*)"$/) do |text|
   expect(page).not_to have_content(text)
 end
 
+When(/^I select "([^"]*)" for "([^"]*)"$/) do |option, field_name|
+  select option, :from => field_name
+end
+
+When(/^I click "([^"]*)" for row with text "([^"]*)"$/) do |target_text, row_text|
+  find('tr', text: row_text).click_link(target_text)
+end

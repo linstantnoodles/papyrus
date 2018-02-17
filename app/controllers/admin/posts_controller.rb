@@ -21,7 +21,11 @@ module Admin
 
     def update
       @post = Post.find_by_id!(params[:id])
-      if @post.update_attributes(title: params[:title], content: params[:content])
+      if @post.update_attributes(
+        title: params[:title],
+        content: params[:content],
+        post_id: params[:post_id]
+      )
         redirect_to admin_posts_path
       else
         render :edit
