@@ -9,10 +9,11 @@
   %body
     #branding
       #logo
-        %a{href: root_path}
+        %a{href: admin_posts_path}
           %span Papyrus
       - if @current_user.present?
         = link_to 'Logout', logout_path, id: 'logout-btn'
+    = link_to 'View Public Site', root_path, id: 'view-public-site'
     #container
       #content
         = yield

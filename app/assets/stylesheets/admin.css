@@ -56,3 +56,10 @@ html {
   padding-right: 15px;
   text-decoration: none;
 }
+
+#view-public-site {
+  display: block;
+  position: absolute;
+  margin-top: 15px;
+  margin-left: 15px;
+}
