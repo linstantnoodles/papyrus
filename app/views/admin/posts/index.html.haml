@@ -1,13 +1,29 @@
 %h1 Posts
 = link_to 'New Post', new_admin_post_path, method: 'get', class: 'btn'
-%table.posts
-  %tbody
-    - @posts.each_with_index do |post, index|
-      %tr
-        %td=link_to post.title, admin_post_path(id: post.id)
-        %td=link_to 'Edit', edit_admin_post_path(id: post.id)
-        - if post.published?
-          %td=link_to 'Unpublish', unpublish_admin_post_path(id: post.id), data: {confirm:'Are you sure?'}
-        - else
-          %td=link_to 'Publish', publish_admin_post_path(id: post.id)
+.posts
+  .drafts
+    %h2 Drafts
+    %table
+      %tbody
+        - @draft_posts.each_with_index do |post, index|
+          %tr
+            %td=link_to post.title, admin_post_path(id: post.id)
+            %td=link_to 'Edit', edit_admin_post_path(id: post.id)
+            - if post.published?
+              %td=link_to 'Unpublish', unpublish_admin_post_path(id: post.id), data: {confirm:'Are you sure?'}
+            - else
+              %td=link_to 'Publish', publish_admin_post_path(id: post.id)
+  .published
+    %h2 Published
+    %table
+      %tbody
+        - @published_posts.each_with_index do |post, index|
+          %tr
+            %td=link_to post.title, admin_post_path(id: post.id)
+            %td=link_to 'Edit', edit_admin_post_path(id: post.id)
+            - if post.published?
+              %td=link_to 'Unpublish', unpublish_admin_post_path(id: post.id), data: {confirm:'Are you sure?'}
+            - else
+              %td=link_to 'Publish', publish_admin_post_path(id: post.id)
+
 

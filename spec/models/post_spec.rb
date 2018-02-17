@@ -50,6 +50,28 @@ RSpec.describe Post, :type => :model do
     expect(post_series.posts.count).to be(2)
   end
 
+  context 'adding a parent' do
+    context 'when parent is itself' do
+      it 'should not save' do
+        post = Post.create(title: 'title of my new series', content: 'test')
+        post.update(post: post)
+
+        expect(post.errors.full_messages).to_not be_empty
+      end
+    end
+
+    context 'when parent is a descendent' do
+      it 'should not save' do
+        post_grandparent = Post.create(title: 'title of my new series', content: 'about my new series')
+        post_parent = Post.create(title: 'post two', content: 'second post of series', post: post_grandparent)
+        post_child = Post.create(title: 'post three', content: 'child post of series', post: post_parent)
+
+        post_grandparent.update(post: post_child)
+        expect(post_grandparent.errors.full_messages).to_not be_empty
+      end
+    end
+  end
+
   describe '#series?' do
     it 'should return true' do
       post_series = Post.create(title: 'title of my new series', content: 'about my new series')

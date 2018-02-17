@@ -4,7 +4,8 @@ module Admin
     before_action :authenticate
 
     def index
-      @posts = Post.all
+      @published_posts = Post.all.select(&:published?)
+      @draft_posts = Post.all.reject(&:published?)
     end
 
     def new

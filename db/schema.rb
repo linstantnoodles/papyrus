@@ -34,13 +34,6 @@ ActiveRecord::Schema.define(version: 20180212143256) do
     t.index ["post_id"], name: "index_posts_on_post_id"
   end
 
-  create_table "repetition_routines", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "submissions", force: :cascade do |t|
     t.text "content"
     t.bigint "exercise_id"

@@ -24,6 +24,7 @@ class Post < ApplicationRecord
   validates :stage, inclusion: { in: Stages.all, message: "%{value} is not a valid stage" }
 
   after_initialize :set_default_stage, if: :new_record?
+  before_save :check_parent_post
 
   def publish
     self.stage = Stages::PUBLISHED
@@ -42,5 +43,34 @@ class Post < ApplicationRecord
 
     def set_default_stage
       self.stage ||= Stages::DRAFT
+    end
+
+    def check_parent_post
+      if (is_self? || is_a_descendent?)
+        errors.add(:post_id, :parent_is_descendent, message: 'parent must not be descendent')
+        throw :abort
+      else
+        true
+      end
+    end
+
+    def is_a_descendent?
+      descendent_posts.include? parent_post
+    end
+
+    def is_self?
+      parent_post&.id == id unless (parent_post&.id.nil? || id.nil?)
+    end
+
+  protected
+
+    def descendent_posts
+      children = []
+      children += Post.where(post_id: id).to_a unless id.nil?
+      descendents = []
+      children.each do |post|
+        descendents += post.descendent_posts
+      end
+      children + descendents
     end
 end

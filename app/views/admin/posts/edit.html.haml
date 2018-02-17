@@ -1,3 +1,6 @@
+- if @post.errors.any?
+  - @post.errors.full_messages.each do |msg|
+    %p=msg
 = form_tag(admin_post_path, method: 'put')
 = label_tag(:title, "Title")
 = text_field_tag(:title, @post.title)

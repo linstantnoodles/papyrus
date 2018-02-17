@@ -3,13 +3,30 @@
 }
 
 .posts {
-    margin-top: 20px;
-    border-collapse: collapse;
-    width: 100%;
+  float: left;
+  width: 100%;
 }
 
-.posts a {
+.drafts, .published{
+    width: 50%;
+}
+
+.posts table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.drafts table a, .published table a {
   text-decoration: none;
+}
+
+.drafts {
+  float: left;
+}
+
+.published {
+  float: right;
 }
 
 .content {
