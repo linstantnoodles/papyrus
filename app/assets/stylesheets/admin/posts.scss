@@ -74,7 +74,7 @@ h1,h2,h3,h4 {
 
 /* Editor */
 
-textarea {
+textarea, input[type="text"] {
   font-size: 1rem;
 }
 
@@ -96,7 +96,7 @@ input[type="text"] {
   min-width: 50%;
 }
 
-textarea, input[type="text"] {
+textarea {
   line-height: 1.5;
   min-height: 600px;
   overflow: auto;
