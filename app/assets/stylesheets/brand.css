@@ -15,7 +15,7 @@
  *= require_self
  */
 
-p {
+p, ul, ol {
   margin-bottom: 10px;
 }
 
