@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       end
       resources :submissions
     end
+    resources :cards
   end
 
   scope module: 'brand' do

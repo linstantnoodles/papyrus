@@ -63,3 +63,24 @@ html {
   margin-top: 15px;
   margin-left: 15px;
 }
+
+#navigation {
+  position: absolute;
+  margin-left: 125px;
+  margin-top: 24px;
+  padding: 0;
+  list-style: none;
+}
+
+#navigation li {
+  float: left;
+  padding: 0 5px;
+}
+
+#navigation a {
+ text-decoration: none;
+}
+
+#navigation a:hover {
+  color: #333;
+}

@@ -1,0 +1,11 @@
+- if @card.errors.any?
+  - @card.errors.full_messages.each do |msg|
+    %p=msg
+= form_tag(admin_cards_path, method: 'post')
+.form-control
+  = label_tag(:front, "Front", for: 'edit-card-title')
+  = text_field_tag(:front, nil, id: 'edit-card-title')
+.form-control
+  = label_tag(:back, "Back", for: 'edit-card-back')
+  = text_area_tag(:back, nil, id: 'edit-card-back' )
+= submit_tag("Save", class: 'btn')

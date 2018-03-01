@@ -11,6 +11,9 @@
       #logo
         %a{href: admin_posts_path}
           %span Papyrus
+      %ul#navigation
+        %li= link_to 'Home', admin_posts_path, class: 'admin_index'
+        %li= link_to 'Cards', admin_cards_path, class: 'admin_cards'
       - if @current_user.present?
         = link_to 'Logout', logout_path, id: 'logout-btn'
     = link_to 'View Public Site', root_path, id: 'view-public-site'
