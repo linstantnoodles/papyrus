@@ -3,17 +3,23 @@ class Card < ApplicationRecord
 
   after_initialize :set_defaults, if: :new_record?
 
-  def set_defaults
-    self.consecutive_correct_answers ||= 0
-    self.easiness_factor ||= SpacedRepetition::DEFAULT_EASINESS_FACTOR
-    self.repetition_interval ||= 0
-  end
-
   def review_with_performance_score(score)
+    return unless due_for_review?
     update_consecutive_correct_answers(score)
     update_easiness_factor(score)
     update_repetition_interval
     update_next_due_date
+  end
+
+  def due_for_review?
+    Time.now >= self.next_due_date
+  end
+
+  def set_defaults
+    self.consecutive_correct_answers ||= 0
+    self.easiness_factor ||= SpacedRepetition::DEFAULT_EASINESS_FACTOR
+    self.repetition_interval ||= 0
+    self.next_due_date ||= Time.now
   end
 
   def update_consecutive_correct_answers(score)

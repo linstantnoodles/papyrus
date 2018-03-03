@@ -22,14 +22,22 @@ RSpec.describe Card, type: :model do
     expect(subject).to_not be_valid
   end
 
-  it 'test' do
-    @card = Card.create(front: 'test', back: 'test', consecutive_correct_answers: 0, repetition_interval: 0, easiness_factor: 2.5)
-    10.times do
-      @card.review_with_performance_score(5)
-      p @card
+  describe 'due_for_review?' do
+    context 'when current date equals or greater than next due date' do
+      it 'returns true' do
+        card = Card.create(front: 'test', back: 'test', next_due_date: 2.days.ago)
+
+        expect(card.due_for_review?).to eq(true)
+      end
     end
-    @card.review_with_performance_score(0)
-    p @card
+
+    context 'when current date earlier than next due date' do
+      it 'returns false' do
+        card = Card.create(front: 'test', back: 'test', next_due_date: 2.days.from_now)
+
+        expect(card.due_for_review?).to eq(false)
+      end
+    end
   end
 
   describe 'update_consecutive_correct_answers' do
@@ -102,32 +110,39 @@ RSpec.describe Card, type: :model do
     before do
       @card = Card.create(front: 'test', back: 'test', consecutive_correct_answers: 0)
     end
-    it 'updates consecutive_correct_answers' do
-      allow(@card).to receive(:update_consecutive_correct_answers)
-      @card.review_with_performance_score(3)
 
-      expect(@card).to have_received(:update_consecutive_correct_answers)
+    context 'when card is not yet due for review' do
+      it 'does not update anything' do
+        allow(@card).to receive(:due_for_review?).and_return(false)
+        allow(@card).to receive(:update_consecutive_correct_answers)
+        allow(@card).to receive(:update_easiness_factor)
+        allow(@card).to receive(:update_repetition_interval)
+        allow(@card).to receive(:update_next_due_date)
+
+        @card.review_with_performance_score(3)
+
+        expect(@card).to_not have_received(:update_consecutive_correct_answers)
+        expect(@card).to_not have_received(:update_easiness_factor)
+        expect(@card).to_not have_received(:update_repetition_interval)
+        expect(@card).to_not have_received(:update_next_due_date)
+      end
     end
 
-    it 'updates the easiness factor' do
-      allow(@card).to receive(:update_easiness_factor)
-      @card.review_with_performance_score(3)
+    context 'when card is due for review' do
+      it 'updates everything' do
+        allow(@card).to receive(:due_for_review?).and_return(true)
+        allow(@card).to receive(:update_consecutive_correct_answers)
+        allow(@card).to receive(:update_easiness_factor)
+        allow(@card).to receive(:update_repetition_interval)
+        allow(@card).to receive(:update_next_due_date)
 
-      expect(@card).to have_received(:update_easiness_factor)
-    end
+        @card.review_with_performance_score(3)
 
-    it 'updates the interval' do
-      allow(@card).to receive(:update_repetition_interval)
-      @card.review_with_performance_score(3)
-
-      expect(@card).to have_received(:update_repetition_interval)
-    end
-
-    it 'updates the next due date' do
-      allow(@card).to receive(:update_next_due_date)
-      @card.review_with_performance_score(3)
-
-      expect(@card).to have_received(:update_next_due_date)
+        expect(@card).to have_received(:update_consecutive_correct_answers)
+        expect(@card).to have_received(:update_easiness_factor)
+        expect(@card).to have_received(:update_repetition_interval)
+        expect(@card).to have_received(:update_next_due_date)
+      end
     end
   end
 end
