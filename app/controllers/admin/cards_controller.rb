@@ -1,4 +1,5 @@
 class Admin::CardsController < ApplicationController
+  layout 'admin'
   def index
     @cards = Card.all
   end
