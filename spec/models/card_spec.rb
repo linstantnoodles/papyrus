@@ -46,15 +46,30 @@ RSpec.describe Card, type: :model do
   end
 
   describe 'update_easiness_factor' do
-    it 'updates the easiness_factor' do
-      @card = Card.create(front: 'test', back: 'test', easiness_factor: 2.5)
+    context 'when performance is equal or greater than 3' do
+      it 'updates the easiness_factor' do
+        @card = Card.create(front: 'test', back: 'test', easiness_factor: 2.5)
 
-      allow(SpacedRepetition).to receive(:easiness_factor).and_call_original
+        allow(SpacedRepetition).to receive(:easiness_factor).and_call_original
 
-      @card.update_easiness_factor(3)
+        @card.update_easiness_factor(3)
 
-      expect(@card.easiness_factor.to_f).to eq(2.36)
-      expect(SpacedRepetition).to have_received(:easiness_factor).with(2.5, 3)
+        expect(@card.easiness_factor.to_f).to eq(2.36)
+        expect(SpacedRepetition).to have_received(:easiness_factor).with(2.5, 3)
+      end
+    end
+
+    context 'when score is lower than 3' do
+      it 'does not update the easiness_factor' do
+        @card = Card.create(front: 'test', back: 'test', easiness_factor: 2.5)
+
+        allow(SpacedRepetition).to receive(:easiness_factor)
+
+        @card.update_easiness_factor(2)
+
+        expect(@card.easiness_factor).to eq(2.5)
+        expect(SpacedRepetition).to_not have_received(:easiness_factor)
+      end
     end
   end
 
@@ -87,52 +102,32 @@ RSpec.describe Card, type: :model do
     before do
       @card = Card.create(front: 'test', back: 'test', consecutive_correct_answers: 0)
     end
+    it 'updates consecutive_correct_answers' do
+      allow(@card).to receive(:update_consecutive_correct_answers)
+      @card.review_with_performance_score(3)
 
-    context 'when score is lower than 3' do
-      it 'resets consecutive_correct_answers to 0' do
-        @card.update(consecutive_correct_answers: 5)
-        @card.review_with_performance_score(2)
-
-        expect(@card.consecutive_correct_answers).to eq(1)
-      end
-
-      it 'does not update the easiness_factor' do
-        allow(@card).to receive(:update_easiness_factor)
-
-        @card.review_with_performance_score(2)
-
-        expect(@card).to_not have_received(:update_easiness_factor)
-      end
+      expect(@card).to have_received(:update_consecutive_correct_answers)
     end
 
-    context 'when score equals 3 or more' do
-      it 'updates consecutive_correct_answers' do
-        allow(@card).to receive(:update_consecutive_correct_answers)
-        @card.review_with_performance_score(3)
+    it 'updates the easiness factor' do
+      allow(@card).to receive(:update_easiness_factor)
+      @card.review_with_performance_score(3)
 
-        expect(@card).to have_received(:update_consecutive_correct_answers)
-      end
+      expect(@card).to have_received(:update_easiness_factor)
+    end
 
-      it 'updates the easiness factor' do
-        allow(@card).to receive(:update_easiness_factor)
-        @card.review_with_performance_score(3)
+    it 'updates the interval' do
+      allow(@card).to receive(:update_repetition_interval)
+      @card.review_with_performance_score(3)
 
-        expect(@card).to have_received(:update_easiness_factor)
-      end
+      expect(@card).to have_received(:update_repetition_interval)
+    end
 
-      it 'updates the interval' do
-        allow(@card).to receive(:update_repetition_interval)
-        @card.review_with_performance_score(3)
+    it 'updates the next due date' do
+      allow(@card).to receive(:update_next_due_date)
+      @card.review_with_performance_score(3)
 
-        expect(@card).to have_received(:update_repetition_interval)
-      end
-
-      it 'updates the next due date' do
-        allow(@card).to receive(:update_next_due_date)
-        @card.review_with_performance_score(3)
-
-        expect(@card).to have_received(:update_next_due_date)
-      end
+      expect(@card).to have_received(:update_next_due_date)
     end
   end
 end
