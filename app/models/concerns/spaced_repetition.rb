@@ -1,4 +1,5 @@
 module SpacedRepetition
+
   DEFAULT_EASINESS_FACTOR = 2.5
   MIN_EASINESS_FACTOR = 1.3
 

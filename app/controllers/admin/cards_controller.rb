@@ -16,4 +16,20 @@ class Admin::CardsController < ApplicationController
       render :new
     end
   end
+
+  def review_all
+    cards = Card.all.select(&:due_for_review?)
+    # gather up cards
+    # redirect to different route with specific card view
+  end
+
+  def show_front
+  end
+
+  def show_back
+  end
+
+  def review
+    # re
+  end
 end

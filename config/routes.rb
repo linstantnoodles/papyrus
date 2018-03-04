@@ -15,7 +15,11 @@ Rails.application.routes.draw do
       end
       resources :submissions
     end
-    resources :cards
+    resources :cards do
+      collection do
+        get 'review_all'
+      end
+    end
   end
 
   scope module: 'brand' do
