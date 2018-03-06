@@ -4,7 +4,7 @@ module SpacedRepetition
   MIN_EASINESS_FACTOR = 1.3
 
   def self.repetition_count(repetition_count, quality_of_response)
-    return 1 if quality_of_response < 3
+    return 0 if quality_of_response < 3
     repetition_count + 1
   end
 

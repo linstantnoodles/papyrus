@@ -19,6 +19,11 @@ Rails.application.routes.draw do
       collection do
         get 'review_all'
       end
+      member do
+        get 'show_front'
+        get 'show_back'
+        post 'review'
+      end
     end
   end
 

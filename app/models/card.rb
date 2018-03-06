@@ -4,11 +4,15 @@ class Card < ApplicationRecord
   after_initialize :set_defaults, if: :new_record?
 
   def review_with_performance_score(score)
-    return unless due_for_review?
+    return self unless due_for_review?
     update_consecutive_correct_answers(score)
     update_easiness_factor(score)
     update_repetition_interval
     update_next_due_date
+  end
+
+  def repeat?(score)
+    score < 3
   end
 
   def due_for_review?

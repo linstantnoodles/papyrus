@@ -31,4 +31,34 @@ RSpec.describe Admin::CardsController, type: :controller do
         end
       end
     end
+
+    describe '#review_all' do
+      context 'when no cards are due for review' do
+        it 'redirects to home page' do
+          response = get :review_all
+
+          expect(response).to redirect_to(admin_cards_path)
+        end
+      end
+
+      context 'when cards are due for review' do
+        before do
+          @card_one = Card.create(front: 'front', back: 'back', next_due_date: 1.day.ago)
+          @card_two = Card.create(front: 'front', back: 'back', next_due_date: 1.day.ago)
+          @card_three = Card.create(front: 'front', back: 'back', next_due_date: 1.day.ago)
+        end
+
+        it 'sets the session with card ids ordered by creation time' do
+          response = get :review_all
+
+          expect(session[:review_queue_card_ids]).to eq([@card_one.id, @card_two.id, @card_three.id])
+        end
+
+        it 'redirects to show the front of the first card in the list' do
+          response = get :review_all
+
+          expect(response).to redirect_to(show_front_admin_card_path(id: @card_one.id))
+        end
+      end
+    end
 end

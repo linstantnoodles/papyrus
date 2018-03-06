@@ -19,6 +19,6 @@ Feature: Admin reviewing cards
         And I click "Perfect!"
         Then I should see "yo"
         And I click "Reveal"
-        Then I should see "not there"
+        Then I should see "not here"
         And I click "Perfect!"
-        Then I should see "You finished your review! Good job."
+        Then I should see "New Card"
