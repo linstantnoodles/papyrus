@@ -37,16 +37,19 @@ class Admin::CardsController < ApplicationController
   end
 
   def review
-    queue = session[:review_queue_card_ids]
-    queue.delete(params[:id].to_i)
+    card_id = params[:id].to_i
     score = params[:score].to_i
-    card = Card.find(params[:id])
+    card = Card.find(card_id)
     card = card.review_with_performance_score(score)
     card.save
+
+    queue = session[:review_queue_card_ids]
+    queue.delete(card_id)
     if card.repeat?(score)
-      queue << params[:id].to_i
+      queue << card_id
     end
     session[:review_queue_card_ids] = queue
+
     if queue.present?
       redirect_to show_front_admin_card_path(id: queue.first)
     else

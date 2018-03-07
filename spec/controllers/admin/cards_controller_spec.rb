@@ -32,6 +32,58 @@ RSpec.describe Admin::CardsController, type: :controller do
       end
     end
 
+    describe '#review' do
+      context 'when card is to be repeated' do
+        it 'pushes the card id to the end of the queue' do
+          card = Card.create(front: 'front', back: 'back')
+          session[:review_queue_card_ids] = [card.id, 2]
+          post :review, params: {
+            id: card.id,
+            score: 1
+          }
+          expect(session[:review_queue_card_ids]).to eq([2, card.id])
+        end
+      end
+
+      context 'when card is not going to be repeated' do
+        it 'removes the card from the queue' do
+          card = Card.create(front: 'front', back: 'back')
+          session[:review_queue_card_ids] = [card.id, 2]
+          post :review, params: {
+            id: card.id,
+            score: 5
+          }
+          expect(session[:review_queue_card_ids]).to eq([2])
+        end
+      end
+
+      context 'when queue is not empty' do
+        it 'redirects to the next card in the queue' do
+          card = Card.create(front: 'front', back: 'back')
+          session[:review_queue_card_ids] = [card.id, 2]
+          response = post :review, params: {
+            id: card.id,
+            score: 5
+          }
+
+          expect(response).to redirect_to(show_front_admin_card_path(id: 2))
+        end
+      end
+
+      context 'when queue is empty' do
+        it 'redirects to home page' do
+          card = Card.create(front: 'front', back: 'back')
+          session[:review_queue_card_ids] = [card.id]
+          response = post :review, params: {
+            id: card.id,
+            score: 5
+          }
+
+          expect(response).to redirect_to(admin_cards_path)
+        end
+      end
+    end
+
     describe '#review_all' do
       context 'when no cards are due for review' do
         it 'redirects to home page' do

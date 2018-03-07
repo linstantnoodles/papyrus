@@ -15,9 +15,9 @@ RSpec.describe SpacedRepetition do
     end
     context 'when quality of response is lower than 3' do
       it 'returns 1' do
-        expect(SpacedRepetition.repetition_count(1, 2)).to eq(1)
-        expect(SpacedRepetition.repetition_count(1, 1)).to eq(1)
-        expect(SpacedRepetition.repetition_count(1, 0)).to eq(1)
+        expect(SpacedRepetition.repetition_count(1, 2)).to eq(0)
+        expect(SpacedRepetition.repetition_count(1, 1)).to eq(0)
+        expect(SpacedRepetition.repetition_count(1, 0)).to eq(0)
       end
     end
   end

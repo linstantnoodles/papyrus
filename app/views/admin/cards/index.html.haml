@@ -1,12 +1,15 @@
 = link_to 'Review All', review_all_admin_cards_path, method: 'get', class: 'btn'
 = link_to 'New Card', new_admin_card_path, method: 'get', class: 'btn'
-- @cards.each_with_index do |card, index|
-  %ul
-    %li=card.front
-    %li="Created: #{card.created_at}"
-    - if card.next_due_date.to_datetime.today?
-      %li="Next due date: Today"
-    - elsif card.next_due_date.to_date == Date.tomorrow
-      %li="Next due date: Tomorrow"
-    - else
-      %li="Next due date: #{card.next_due_date}"
+.cards
+  %h2 Cards
+  %table
+    %tbody
+      - @cards.each_with_index do |card, index|
+        %tr
+          %td=card.front
+          - if card.next_due_date.to_datetime.today?
+            %td="Today"
+          - elsif card.next_due_date.to_date == Date.tomorrow
+            %td="Tomorrow"
+          - else
+            %td="#{card.next_due_date}"
