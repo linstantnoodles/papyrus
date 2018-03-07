@@ -6,7 +6,7 @@
     %tbody
       - @cards.each_with_index do |card, index|
         %tr
-          %td=card.front
+          %td=link_to card.front, edit_admin_card_path(id: card.id)
           - if card.next_due_date.to_datetime.today?
             %td="Today"
           - elsif card.next_due_date.to_date == Date.tomorrow

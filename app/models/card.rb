@@ -1,5 +1,5 @@
 class Card < ApplicationRecord
-  validates_presence_of :front, :back
-
   include SpacedRepetition
+
+  validates_presence_of :front, :back
 end

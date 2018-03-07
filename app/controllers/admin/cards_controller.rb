@@ -8,6 +8,22 @@ class Admin::CardsController < ApplicationController
     @card = Card.new
   end
 
+  def edit
+    @card = Card.find_by_id!(params[:id])
+  end
+
+  def update
+    @card = Card.find_by_id!(params[:id])
+      if @card.update_attributes(
+        front: params[:front],
+        back: params[:back]
+      )
+        redirect_to admin_cards_path
+      else
+        render :edit
+      end
+  end
+
   def create
     @card = Card.new(front: params[:front], back: params[:back])
     if @card.save
@@ -55,5 +71,11 @@ class Admin::CardsController < ApplicationController
     else
       redirect_to admin_cards_path
     end
+  end
+
+  def destroy
+    @card = Card.find_by_id!(params[:id])
+    @card.destroy
+    redirect_to admin_cards_path
   end
 end

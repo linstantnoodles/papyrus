@@ -1,0 +1,10 @@
+- if @card.errors.any?
+  - @card.errors.full_messages.each do |msg|
+    %p=msg
+= form_tag(admin_card_path, method: 'put')
+= label_tag(:front, "Front")
+= text_area_tag(:front, @card.front)
+= label_tag(:back, "Back", for: 'card_back')
+= text_area_tag(:back, @card.back, id: 'card_back')
+= submit_tag("Save")
+= link_to 'Delete', admin_card_path(@card), method: 'delete'

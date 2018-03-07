@@ -32,6 +32,37 @@ RSpec.describe Admin::CardsController, type: :controller do
       end
     end
 
+    describe '#update' do
+      context 'when params valid' do
+        it 'redirects to index' do
+          my_card = Card.new(front: 'test-front', back: 'test-back')
+          my_card.save
+          post :update, params: {
+            'id' => my_card.id,
+            'front' => 'new front',
+            'back' => 'new back'
+          }
+
+          expect(my_card.reload.title).to eq('new front')
+          expect(response).to redirect_to(admin_cards_path)
+        end
+      end
+
+      context 'when params invalid' do
+        it 'renders edit' do
+          my_card = Card.new(front: 'test-front', back: 'test-back')
+          my_card.save
+          post :update, params: {
+            'id' => my_card.id,
+            'front' => '',
+            'back' => ''
+          }
+
+          expect(response).to render_template(:edit)
+        end
+      end
+    end
+
     describe '#review' do
       context 'when card is to be repeated' do
         it 'pushes the card id to the end of the queue' do
