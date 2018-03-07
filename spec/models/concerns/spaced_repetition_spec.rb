@@ -6,14 +6,14 @@ RSpec.describe SpacedRepetition do
   end
 
   describe '#repetition_count' do
-    context 'when quality of response is 3 or more' do
+    context 'when quality of response is correct' do
       it 'increments repetition count by 1' do
         expect(SpacedRepetition.repetition_count(1, 3)).to eq(2)
         expect(SpacedRepetition.repetition_count(1, 4)).to eq(2)
         expect(SpacedRepetition.repetition_count(1, 5)).to eq(2)
       end
     end
-    context 'when quality of response is lower than 3' do
+    context 'when quality of response is incorrect' do
       it 'returns 1' do
         expect(SpacedRepetition.repetition_count(1, 2)).to eq(0)
         expect(SpacedRepetition.repetition_count(1, 1)).to eq(0)
