@@ -43,7 +43,8 @@ RSpec.describe Admin::CardsController, type: :controller do
             'back' => 'new back'
           }
 
-          expect(my_card.reload.title).to eq('new front')
+          expect(my_card.reload.front).to eq('new front')
+          expect(my_card.reload.back).to eq('new back')
           expect(response).to redirect_to(admin_cards_path)
         end
       end

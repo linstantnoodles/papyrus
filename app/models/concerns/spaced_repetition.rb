@@ -21,7 +21,7 @@ module SpacedRepetition
     end
 
     def due_for_review?
-      Time.now >= self.next_due_date
+      Time.now.to_date >= self.next_due_date.to_date
     end
 
     def set_defaults

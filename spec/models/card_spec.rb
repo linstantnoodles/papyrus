@@ -29,6 +29,18 @@ RSpec.describe Card, type: :model do
 
         expect(card.due_for_review?).to eq(true)
       end
+
+      context 'when dates are equal but different times' do
+        it 'returns true' do
+          current_time = Time.new(2018, 6, 21, 13,30,0)
+          due_time = current_time + 30.minutes
+          allow(Time).to receive(:now).and_return(current_time)
+
+          card = Card.create(front: 'test', back: 'test', next_due_date: due_time)
+
+          expect(card.due_for_review?).to eq(true)
+        end
+      end
     end
 
     context 'when current date earlier than next due date' do
