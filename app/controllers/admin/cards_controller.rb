@@ -49,7 +49,7 @@ class Admin::CardsController < ApplicationController
   end
 
   def show_back
-    @card = Card.find(params[:id])
+    @card = CardDecorator.new(card: Card.find(params[:id]))
   end
 
   def review

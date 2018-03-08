@@ -1,2 +1,2 @@
-%p=@card.front
-= link_to 'Reveal', show_back_admin_card_path(id: @card.id)
+%h1{class: 'card-front'}=@card.front
+= link_to 'Show back', show_back_admin_card_path(id: @card.id), class: 'show-back'

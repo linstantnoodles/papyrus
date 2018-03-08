@@ -1,7 +1,8 @@
-%p=@card.back
-= button_to 'Perfect!', review_admin_card_path(id: @card.id), method: 'post', params: {score: 5}
-= button_to 'Good but hesitated!', review_admin_card_path(id: @card.id), method: 'post', params: {score: 4}
-= button_to 'O.K but with difficulty!', review_admin_card_path(id: @card.id), method: 'post', params: {score: 3}
-= button_to 'Seemed easy ...', review_admin_card_path(id: @card.id), method: 'post', params: {score: 2}
-= button_to 'Got it wrong but I remember!', review_admin_card_path(id: @card.id), method: 'post', params: {score: 1}
-= button_to 'NOPE', review_admin_card_path(id: @card.id), method: 'post', params: {score: 0}
+%div{class: 'card-back'}=@card.back
+.performance-score
+  = button_to 'Perfect!', review_admin_card_path(id: @card.id), method: 'post', params: {score: 5}
+  = button_to 'Good but hesitated!', review_admin_card_path(id: @card.id), method: 'post', params: {score: 4}
+  = button_to 'O.K but with difficulty!', review_admin_card_path(id: @card.id), method: 'post', params: {score: 3}
+  = button_to 'Seemed easy ...', review_admin_card_path(id: @card.id), method: 'post', params: {score: 2}
+  = button_to 'Got it wrong but I remember!', review_admin_card_path(id: @card.id), method: 'post', params: {score: 1}
+  = button_to 'NOPE', review_admin_card_path(id: @card.id), method: 'post', params: {score: 0}

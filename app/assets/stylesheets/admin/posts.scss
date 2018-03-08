@@ -39,11 +39,11 @@ th, td {
     padding-bottom: 10px;
 }
 
-tbody tr:nth-child(odd) {
+.posts tbody tr:nth-child(odd) {
   background-color: #fff;
 }
 
-tbody tr:hover {
+.posts tbody tr:hover {
   background-color: #29A;
 }
 
