@@ -14,3 +14,9 @@ Feature: Admin viewing cards
         Then I should see "World"
         Then I should see "Today"
         Then I should see "Tomorrow"
+
+    Scenario: When no cards exist
+        Given I am a logged in admin
+        When I visit the admin home page
+        And I click "Cards"
+        Then I should see "No cards yet!"

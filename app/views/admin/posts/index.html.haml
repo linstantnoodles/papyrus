@@ -3,6 +3,8 @@
 .posts
   .drafts
     %h2 Drafts
+    - if @draft_posts.empty?
+      %p No drafts yet!
     %table
       %tbody
         - @draft_posts.each_with_index do |post, index|
@@ -15,6 +17,8 @@
               %td=link_to 'Publish', publish_admin_post_path(id: post.id)
   .published
     %h2 Published
+    - if @published_posts.empty?
+      %p Nothing published yet!
     %table
       %tbody
         - @published_posts.each_with_index do |post, index|

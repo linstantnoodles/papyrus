@@ -2,14 +2,16 @@
 = link_to 'New Card', new_admin_card_path, method: 'get', class: 'btn'
 .cards
   %h2 Cards
+  - if @cards.empty?
+    %p No cards yet!
   %table
     %tbody
       - @cards.each_with_index do |card, index|
         %tr
           %td=link_to card.front, edit_admin_card_path(id: card.id)
           - if card.next_due_date.to_datetime.today?
-            %td="Today"
+            %td{class: 'due-day'}="(Due today)"
           - elsif card.next_due_date.to_date == Date.tomorrow
-            %td="Tomorrow"
+            %td{class: 'due-day'}="(Due tomorrow)"
           - else
-            %td="#{card.next_due_date}"
+            %td{class: 'due-day'}="(Due #{card.next_due_date})"

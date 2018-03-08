@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Admin::CardsController, type: :controller do
+  context 'when session exists' do
+    before(:each) do
+      user = User.create(name: 'admin', password: 'password')
+      session[:user_id] = user.id
+    end
+
     describe '#create' do
       it 'creates a new card' do
         post :create, params: {
@@ -145,4 +151,5 @@ RSpec.describe Admin::CardsController, type: :controller do
         end
       end
     end
+  end
 end
