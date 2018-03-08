@@ -14,4 +14,4 @@
           - elsif card.next_due_date.to_date == Date.tomorrow
             %td{class: 'due-day'}="(Due tomorrow)"
           - else
-            %td{class: 'due-day'}="(Due #{card.next_due_date})"
+            %td{class: 'due-day'}="(Due #{card.next_due_date.strftime("%B %d, %Y")})"
