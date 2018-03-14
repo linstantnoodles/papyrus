@@ -6,5 +6,6 @@
 = text_area_tag(:front, @card.front)
 = label_tag(:back, "Back", for: 'card_back')
 = text_area_tag(:back, @card.back, id: 'card_back')
+= react_component("HelloWorld", { greeting: "Hello" })
 = submit_tag("Save")
 = link_to 'Delete', admin_card_path(@card), method: 'delete'
