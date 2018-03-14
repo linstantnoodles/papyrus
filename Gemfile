@@ -20,6 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'redcarpet'
 gem 'rouge'
+gem 'webpacker', '~> 3.3'
 
 gem 'haml'
 # Use CoffeeScript for .coffee assets and views
@@ -32,7 +33,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'rspec-rails', '~> 3.6'
 gem 'jquery-rails'
 
 # Use Capistrano for deployment
