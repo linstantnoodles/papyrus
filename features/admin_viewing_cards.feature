@@ -12,8 +12,8 @@ Feature: Admin viewing cards
         And I click "Cards"
         Then I should see "Hello"
         Then I should see "World"
-        Then I should see "Today"
-        Then I should see "Tomorrow"
+        Then I should see "Due today"
+        Then I should see "Due tomorrow"
 
     Scenario: When no cards exist
         Given I am a logged in admin
