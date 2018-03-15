@@ -5,7 +5,7 @@ module Admin
 
     def index
       @published_posts = Post.all.select(&:published?)
-      @draft_posts = Post.order(:created_at).all.reject(&:published?)
+      @draft_posts = Post.order(created_at: :desc).all.reject(&:published?)
     end
 
     def new
