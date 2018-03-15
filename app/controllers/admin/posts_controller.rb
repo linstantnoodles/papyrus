@@ -4,7 +4,7 @@ module Admin
     before_action :authenticate
 
     def index
-      @published_posts = Post.all.select(&:published?)
+      @published_posts = Post.order(published_at: :desc).all.select(&:published?)
       @draft_posts = Post.order(created_at: :desc).all.reject(&:published?)
     end
 
