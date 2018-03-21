@@ -6,6 +6,6 @@ Scenario: Deleting an existing post
     Given I am a logged in admin
     And a post with title "Hello" exists
     When I visit the admin home page
-    And I click "Edit"
+    And I click "Hello"
     And I click "Delete"
     Then I should not see "Hello"

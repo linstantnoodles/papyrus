@@ -1,3 +1,7 @@
+- if @post.parent_post&.id
+  %h1="New Child Post for Post #{@post.parent_post.title}"
+- else
+  %h1 New Post
 - if @post.errors.any?
   - @post.errors.full_messages.each do |msg|
     %p=msg

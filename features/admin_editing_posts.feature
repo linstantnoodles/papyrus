@@ -7,7 +7,7 @@ Scenario: Editing an existing post
     And a post with title "Hello" exists
     And the post "Hello" has content "What's up?"
     When I visit the admin home page
-    And I click "Edit"
+    And I click "Hello"
     And I fill in "title" with "Goodbye"
     And I click "Save"
     Then I should see "Goodbye"
@@ -27,7 +27,7 @@ Scenario: Adding post to a series
     And a post with title "Hello Parent" exists
     And a post with title "Hello Child" exists
     When I visit the admin home page
-    And I click "Edit" for row with text "Hello Child"
+    And I click "Hello Child" for row with text "Hello Child"
     And I select "Hello Parent" for "Parent"
     And I click "Save"
     And I click "Hello Parent"
