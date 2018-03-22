@@ -6,10 +6,13 @@ import rootReducer from '../reducers'
 import App from './App'
  
 const store = createStore(rootReducer)
- 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
+
+const HelloWorld = () => {
+    return (
+        <Provider store={store}>
+            <App />
+        </Provider>
+    );
+}
+
+export default HelloWorld
