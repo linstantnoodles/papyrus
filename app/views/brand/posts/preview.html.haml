@@ -1,0 +1,4 @@
+%h1{id: 'entry-title'}="#{@post.title} (Preview)"
+#entry-content=@post.content
+%span="Last updated: #{@post.updated_at.strftime("%m/%d/%Y")}"
+= link_to 'Edit', edit_admin_post_path(id: @post.id)

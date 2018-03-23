@@ -30,7 +30,9 @@ Rails.application.routes.draw do
   scope module: 'brand' do
     get 'about', to: 'pages#about'
     get 'series', to: 'pages#series'
-    resources :posts, only: %i[index show]
+    resources :posts, only: %i[index show] do
+      get 'preview', on: :member
+    end
   end
 
   resources :sessions, only: %i[new create destroy]

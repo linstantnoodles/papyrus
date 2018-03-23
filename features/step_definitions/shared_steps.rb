@@ -26,6 +26,10 @@ Then(/^I should see "([^"]*)"$/) do |text|
   expect(page).to have_content(text)
 end
 
+Then(/^I should see button "([^"]*)"$/) do |text|
+  expect(page.has_button?(text)).to be(true)
+end
+
 Then(/^I should not see "([^"]*)"$/) do |text|
   expect(page).not_to have_content(text)
 end
