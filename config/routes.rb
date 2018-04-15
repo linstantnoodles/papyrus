@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'brand/posts#index'
 
   namespace :admin do
+    get 'statistics', to: 'statistics#index'
     resources :posts do
       member do
         get 'publish', to: 'posts#publish'

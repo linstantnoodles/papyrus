@@ -1,0 +1,6 @@
+%h1="Total posts: #{@posts.count}"
+%h1="Published: #{@posts.select(&:published?).count}"
+- if @last_published_post
+  %h1="Last published post: #{@last_published_post.title} on #{@last_published_post.published_at.strftime('%m / %Y')}"
+- else
+  %h1 Nothing published :(
