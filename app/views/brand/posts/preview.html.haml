@@ -1,4 +1,15 @@
 %h1{id: 'entry-title'}="#{@post.title} (Preview)"
+- if @post.published?
+  Published
+- else
+  Draft
 #entry-content=@post.content
 %span="Last updated: #{@post.updated_at.strftime("%m/%d/%Y")}"
 = link_to 'Edit', edit_admin_post_path(id: @post.id)
+- if @post.series?
+  - if @post.child_posts.present?
+    %h2 Collection
+    .descendent_posts
+      = render partial: 'preview_descendent_posts', locals: { posts: @post.child_posts }
+  - else
+    %p No posts have been published for this series yet!
