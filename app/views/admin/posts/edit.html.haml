@@ -11,5 +11,5 @@
 = text_area_tag(:content, @post.content, id: 'post_content')
 = submit_tag("Save")
 = link_to 'Preview', preview_post_path(@post), method: 'get'
-= link_to 'Delete', admin_post_path(@post), method: 'delete'
+= link_to 'Delete', admin_post_path(@post), method: 'delete', data: {confirm: 'Are you sure you want to delete?'}
 = link_to 'New Child Post', new_admin_post_post_path(post_id: @post.id), method: 'get', class: 'btn'

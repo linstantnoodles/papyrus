@@ -22,6 +22,10 @@ When(/^I click "([^"]*)"$/) do |text|
   click_on text
 end
 
+When(/^I accept the alert dialog$/) do
+  accept_alert
+end
+
 Then(/^I should see "([^"]*)"$/) do |text|
   expect(page).to have_content(text)
 end
