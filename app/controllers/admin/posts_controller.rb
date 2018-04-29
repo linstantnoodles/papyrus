@@ -36,11 +36,19 @@ module Admin
     def create
       @post = Post.new(title: params[:title], content: params[:content], post_id: params[:post_id])
       if @post.save
+        @post.update(tags: tags)
         return redirect_to admin_post_path(id: params[:post_id]) unless params[:post_id].blank?
         redirect_to admin_posts_path
       else
         render :new
       end
+    end
+
+    def tags
+      return [] unless !params[:tags].blank?
+      params[:tags].split(',').map {
+        |name| Tag.find_or_create_by(name: name.strip)
+      }
     end
 
     def destroy

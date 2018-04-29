@@ -8,4 +8,7 @@
 .form-control
   = label_tag(:back, "Back", for: 'edit-card-back')
   = text_area_tag(:back, nil, id: 'edit-card-back' )
+.form-control
+  = label_tag(:tags, "Tags", for: 'edit-card-tags')
+  = text_field_tag(:tags, nil, id: 'edit-card-tags' )
 = submit_tag("Save", class: 'btn')

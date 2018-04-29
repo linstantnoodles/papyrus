@@ -17,6 +17,20 @@ RSpec.describe Admin::CardsController, type: :controller do
         expect(Card.count).to eq(1)
       end
 
+      context 'when tag exists' do
+        it 'creates new card with tags' do
+          post :create, params: {
+            'front' => 'test front',
+            'back' => 'test back',
+            'tags' => 'tag1, tag2'
+          }
+
+          expect(Card.first.tags.size).to eq(2)
+          expect(Card.first.tags.first.name).to eq('tag1')
+          expect(Card.first.tags.second.name).to eq('tag2')
+        end
+      end
+
       it 'redirects to #index' do
         response = post :create, params: {
           'front' => 'test front',

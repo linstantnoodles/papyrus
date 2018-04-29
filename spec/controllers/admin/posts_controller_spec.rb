@@ -97,6 +97,20 @@ RSpec.describe Admin::PostsController, :type => :controller do
           expect(response).to render_template(:new)
         end
       end
+
+      context 'when tag exists' do
+        it 'creates new card with tags' do
+          post :create, params: {
+            'title' => 'wow',
+            'content' => 'test content',
+            'tags' => 'tag1, tag2'
+          }
+
+          expect(Post.first.tags.size).to eq(2)
+          expect(Post.first.tags.first.name).to eq('tag1')
+          expect(Post.first.tags.second.name).to eq('tag2')
+        end
+      end
     end
 
     describe '#publish' do

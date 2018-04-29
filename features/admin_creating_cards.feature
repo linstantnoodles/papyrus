@@ -9,5 +9,7 @@ Feature: Admin creating cards
         And I click "New Card"
         And I fill in "front" with "are all regular languages context free?"
         And I fill in "back" with "yes"
+        And I fill in "tags" with "programming languages, grammar"
         And I click "Save"
         Then I should see "are all regular languages context free?"
+        Then I should see "programming languages, grammar"

@@ -19,7 +19,8 @@ class Admin::CardsController < ApplicationController
     @card = Card.find_by_id!(params[:id])
       if @card.update_attributes(
         front: params[:front],
-        back: params[:back]
+        back: params[:back],
+        tags: tags
       )
         redirect_to admin_cards_path
       else
@@ -30,10 +31,18 @@ class Admin::CardsController < ApplicationController
   def create
     @card = Card.new(front: params[:front], back: params[:back])
     if @card.save
+      @card.update(tags: tags)
       redirect_to admin_cards_path
     else
       render :new
     end
+  end
+
+  def tags
+    return [] unless !params[:tags].blank?
+    params[:tags].split(',').map {
+      |name| Tag.find_or_create_by(name: name.strip)
+    }
   end
 
   def review_all

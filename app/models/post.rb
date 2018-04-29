@@ -19,6 +19,9 @@ class Post < ApplicationRecord
   alias_attribute :child_posts, :posts
   alias_attribute :parent_post, :post
 
+  has_many :taggings, as: :taggable
+  has_many :tags, through: :taggings
+
   validates_presence_of :title, :content
   validates_presence_of :stage
   validates :stage, inclusion: { in: Stages.all, message: "%{value} is not a valid stage" }

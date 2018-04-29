@@ -15,3 +15,4 @@
             %td{class: 'due-day'}="(Due tomorrow)"
           - else
             %td{class: 'due-day'}="(Due #{card.next_due_date.strftime("%B %d, %Y")})"
+          %td=card.tags.map(&:name).join(', ')
