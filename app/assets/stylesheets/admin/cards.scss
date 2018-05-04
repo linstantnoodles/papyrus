@@ -28,3 +28,15 @@
     font-style: italic;
     margin-left: 10px;
 }
+
+.cards table {
+    float: left;
+}
+
+.cards .tags {
+    float: right;
+}
+
+.cards .tags li {
+    list-style: none;
+}

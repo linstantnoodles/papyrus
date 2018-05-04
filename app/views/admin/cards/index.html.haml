@@ -1,4 +1,4 @@
-= link_to 'Review All', review_all_admin_cards_path, method: 'get', class: 'btn'
+= link_to 'Review All', '/admin/cards/review_all', method: 'get', class: 'btn'
 = link_to 'New Card', new_admin_card_path, method: 'get', class: 'btn'
 .cards
   %h2 Cards
@@ -16,3 +16,8 @@
           - else
             %td{class: 'due-day'}="(Due #{card.next_due_date.strftime("%B %d, %Y")})"
           %td=card.tags.map(&:name).join(', ')
+  %div.tags
+    %h3 Review by tags
+    %ul
+      - @tags.each do |tag|
+        %li= link_to tag.name, "/admin/cards/review_all/#{tag.name}", method: 'get', class: 'btn'
