@@ -5,6 +5,7 @@ class Admin::CardsController < ApplicationController
 
   def index
     @cards = Card.all
+    @tags = Tag.all.order('name ASC')
   end
 
   def new
@@ -47,6 +48,11 @@ class Admin::CardsController < ApplicationController
 
   def review_all
     cards = Card.all.select(&:due_for_review?)
+    if params[:tag]
+      cards = cards.select do |card|
+        card.tags.map(&:name).include?(params[:tag])
+      end
+    end
     if cards.present?
       review_queue_card_ids = cards.collect(&:id)
       session[:review_queue_card_ids] = review_queue_card_ids

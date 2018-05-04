@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
     resources :cards do
       collection do
-        get 'review_all'
+        get 'review_all(/:tag)', to: 'cards#review_all'
       end
       member do
         get 'show_front'

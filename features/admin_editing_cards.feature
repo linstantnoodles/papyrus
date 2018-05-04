@@ -1,3 +1,4 @@
+# TODO: make more robus since you can always see tags now
 Feature: Admin editing cards
 
     As an admin I should be able to edit my cards
@@ -14,4 +15,3 @@ Feature: Admin editing cards
         And I click "Save"
         Then I should see "bye"
         Then I should see "foo"
-        Then I should not see "bar"

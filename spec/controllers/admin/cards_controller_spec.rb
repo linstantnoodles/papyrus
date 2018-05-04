@@ -164,6 +164,34 @@ RSpec.describe Admin::CardsController, type: :controller do
           expect(response).to redirect_to(show_front_admin_card_path(id: @card_one.id))
         end
       end
+
+      context 'when no cards are tagged with tag' do
+        it 'redirects to home page' do
+          response = get :review_all, params: {tag: 'wow'}
+          expect(response).to redirect_to(admin_cards_path)
+        end
+      end
+
+      context 'when tagged cards are due for review' do
+        before do
+          @tag = Tag.create(name: 'peaches')
+          @tagged_card_one = Card.create(front: 'front', back: 'back', next_due_date: 1.day.ago)
+          @tagged_card_one.update(tags: [@tag])
+          @untagged_card_two = Card.create(front: 'front', back: 'back', next_due_date: 1.day.ago)
+        end
+
+        it 'sets the session with tagged card ids' do
+          response = get :review_all, params: {tag: @tag.name}
+
+          expect(session[:review_queue_card_ids]).to eq([@tagged_card_one.id])
+        end
+
+        it 'redirects to show the front of the tagged card in the list' do
+          response = get :review_all, params: {tag: @tag.name}
+
+          expect(response).to redirect_to(show_front_admin_card_path(id: @tagged_card_one.id))
+        end
+      end
     end
   end
 end
