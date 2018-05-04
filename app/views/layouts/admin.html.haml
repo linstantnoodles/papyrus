@@ -16,6 +16,7 @@
           %li= link_to 'Home', admin_posts_path, class: 'admin_index'
           %li= link_to 'Cards', admin_cards_path, class: 'admin_cards'
           %li= link_to 'Statistics', admin_statistics_path, class: 'admin_statistics'
+          %li= link_to 'Tags', admin_tags_path, class: 'admin_tags'
       - if @current_user.present?
         = link_to 'Logout', logout_path, id: 'logout-btn'
     - if @current_user.present?

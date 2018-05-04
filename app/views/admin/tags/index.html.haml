@@ -1,0 +1,9 @@
+.tags
+  %h2 Tags
+  - if @tags.empty?
+    %p No tags yet!
+  %table
+    %tbody
+      - @tags.each do |tag|
+        %tr
+          %td=tag.name

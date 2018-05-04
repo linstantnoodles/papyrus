@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         post 'review'
       end
     end
+    resources :tags, only: %i[index]
   end
 
   scope module: 'brand' do

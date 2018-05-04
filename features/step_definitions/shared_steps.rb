@@ -14,6 +14,10 @@ Given(/^I visit the admin exercises page$/) do
   visit admin_exercises_path
 end
 
+Given(/^I visit the admin tags page$/) do
+  visit admin_tags_path
+end
+
 When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field_name, text|
   fill_in field_name, :with => text
 end
