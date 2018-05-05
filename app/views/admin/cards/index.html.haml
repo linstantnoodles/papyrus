@@ -1,13 +1,16 @@
 = link_to 'Review All', '/admin/cards/review_all', method: 'get', class: 'btn'
 = link_to 'New Card', new_admin_card_path, method: 'get', class: 'btn'
-.cards
+.cards{data: {controller: 'search'}}
   %h2 Cards
+  %label
+    Filter by tag
+    %input{type: 'text', data: { target: 'search.tag', action: 'keyup->search#filter' }}
   - if @cards.empty?
     %p No cards yet!
   %table
     %tbody
       - @cards.each_with_index do |card, index|
-        %tr
+        %tr{data: { target: 'search.record', tags: card.tags.map(&:name).join(', ')}}
           %td=link_to card.front, edit_admin_card_path(id: card.id)
           - if card.next_due_date.to_datetime.today?
             %td{class: 'due-day'}="(Due today)"
