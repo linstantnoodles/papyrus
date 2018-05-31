@@ -33,6 +33,10 @@ class PostDecorator
   class MyHTML < Redcarpet::Render::HTML
     include Rouge::Plugins::Redcarpet
 
+    def self.lexer_name(language)
+      Rouge::Lexers.constants.find{|x| x.downcase.to_s == language }.to_s
+    end
+
     def block_code(code, language)
       theme = Rouge::Themes::Github
       formatter = Rouge::Formatters::HTMLInline.new(theme)
@@ -41,7 +45,7 @@ class PostDecorator
         gutter_class: 'rouge-gutter',
         code_class: 'rouge-code'
       })
-      lexer = Rouge::Lexers.const_get(language.capitalize.to_s).new
+      lexer = Rouge::Lexers.const_get(MyHTML.lexer_name(language)).new
       formatted_code_block = formatter.format(lexer.lex(code))
       %(<div class="code-container">#{formatted_code_block}</div>)
     end
