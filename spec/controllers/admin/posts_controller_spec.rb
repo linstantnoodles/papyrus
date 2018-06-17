@@ -43,6 +43,23 @@ RSpec.describe Admin::PostsController, :type => :controller do
           expect(response).to render_template(:edit)
         end
       end
+
+      context 'when tags exists' do
+        it 'updates post with tags' do
+          my_post = Post.create(title: 'test-title', content: 'test-content')
+          post :update, params: {
+            'id' => my_post.id,
+            'title' => 'wow',
+            'content' => 'test content',
+            'tags' => 'tag1, tag2'
+          }
+
+          my_post = my_post.reload
+          expect(my_post.tags.size).to eq(2)
+          expect(my_post.tags.first.name).to eq('tag1')
+          expect(my_post.tags.second.name).to eq('tag2')
+        end
+      end
     end
 
     describe '#create' do
@@ -69,6 +86,7 @@ RSpec.describe Admin::PostsController, :type => :controller do
           expect(response).to redirect_to(admin_post_path(id: parent_post.id))
         end
       end
+
       it 'creates a new post' do
         post :create, params: {
           'title' => 'test title',

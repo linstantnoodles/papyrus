@@ -25,7 +25,8 @@ module Admin
       if @post.update_attributes(
         title: params[:title],
         content: params[:content],
-        post_id: params[:post_id]
+        post_id: params[:post_id],
+        tags: tags
       )
         redirect_to admin_posts_path
       else

@@ -9,8 +9,10 @@ Scenario: Editing an existing post
     When I visit the admin home page
     And I click "Hello"
     And I fill in "title" with "Goodbye"
+    And I fill in "tags" with "foo"
     And I click "Save"
     Then I should see "Goodbye"
+    Then I should see "foo"
 
 Scenario: Publishing an existing draft post
     Given I am a logged in admin

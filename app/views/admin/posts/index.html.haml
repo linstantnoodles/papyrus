@@ -1,6 +1,9 @@
 %h1 Posts
 = link_to 'New Post', new_admin_post_path, method: 'get', class: 'btn'
-.posts
+.posts{data: {controller: 'search'}}
+  %label
+    Filter by tag
+    %input{type: 'text', data: { target: 'search.tag', action: 'keyup->search#filter' }}
   .drafts
     %h2 Drafts
     - if @draft_posts.empty?
@@ -8,12 +11,13 @@
     %table
       %tbody
         - @draft_posts.each_with_index do |post, index|
-          %tr
+          %tr{data: { target: 'search.record', tags: post.tags.map(&:name).join(', ')}}
             %td=link_to post.title, edit_admin_post_path(id: post.id)
             - if post.published?
               %td=link_to 'Unpublish', unpublish_admin_post_path(id: post.id), data: {confirm:'Are you sure?'}
             - else
               %td=link_to 'Publish', publish_admin_post_path(id: post.id)
+            %td=post.tags.map(&:name).join(', ')
   .published
     %h2 Published
     - if @published_posts.empty?
@@ -21,11 +25,12 @@
     %table
       %tbody
         - @published_posts.each_with_index do |post, index|
-          %tr
+          %tr{data: { target: 'search.record', tags: post.tags.map(&:name).join(', ')}}
             %td=link_to post.title, edit_admin_post_path(id: post.id)
             - if post.published?
               %td=link_to 'Unpublish', unpublish_admin_post_path(id: post.id), data: {confirm:'Are you sure?'}
             - else
               %td=link_to 'Publish', publish_admin_post_path(id: post.id)
+            %td=post.tags.map(&:name).join(', ')
 
 

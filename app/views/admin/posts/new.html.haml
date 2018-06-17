@@ -13,4 +13,7 @@
 .form-control
   = label_tag(:content, "Content", for: 'edit-entry-content')
   = text_area_tag(:content, nil, id: 'edit-entry-content' )
+.form-control
+  = label_tag(:tags, "Tags", for: 'edit-entry-tags')
+  = text_field_tag(:tags, nil, id: 'edit-entry-tags' )
 = submit_tag("Save", class: 'btn')

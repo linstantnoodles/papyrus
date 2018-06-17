@@ -9,6 +9,8 @@
 = select_tag(:post_id, options_from_collection_for_select(Post.all.order('created_at DESC'), 'id', 'title', @post.post_id), prompt: 'Select a parent', id: 'post_id')
 = label_tag(:content, "Content", for: 'post_content')
 = text_area_tag(:content, @post.content, id: 'post_content')
+= label_tag(:tags, "Tags", for: 'edit-post-tags')
+= text_field_tag(:tags, @post.tags.map(&:name).join(', '), id: 'edit-post-tags' )
 = submit_tag("Save")
 = link_to 'Preview', preview_post_path(@post), method: 'get'
 = link_to 'Delete', admin_post_path(@post), method: 'delete', data: {confirm: 'Are you sure you want to delete?'}

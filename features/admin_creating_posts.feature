@@ -8,8 +8,10 @@ Scenario: Creating a post
     And I click "New Post"
     And I fill in "title" with "Goodbye"
     And I fill in "content" with "Horses"
+    And I fill in "tags" with "code, happiness"
     And I click "Save"
     Then I should see "Goodbye"
+    Then I should see "code, happiness"
 
 Scenario: Creating a child post
     Given I am a logged in admin
