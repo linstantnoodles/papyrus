@@ -13,6 +13,8 @@ class PostDecorator
   def title
     if @post.series?
       "#{@post.title.capitalize} (series)"
+    elsif @post.tagged_with?('til')
+      "#{@post.title.capitalize} (til)"
     else
       @post.title.capitalize
     end

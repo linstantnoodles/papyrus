@@ -130,5 +130,33 @@ RSpec.describe Post, :type => :model do
       end
     end
   end
+
+  describe '#tagged_with?' do
+    context 'when post has tag' do
+      it 'returns true' do
+        post = Post.create(
+          title: 'test-title',
+          content: 'test-content',
+          stage: Post::Stages::PUBLISHED
+        )
+
+        post.tags.create(name: 'sup')
+        expect(post.tagged_with?('sup')).to eq(true)
+      end
+    end
+
+    context 'when post does not have tag' do
+      it 'returns false' do
+        post = Post.create(
+          title: 'test-title',
+          content: 'test-content',
+          stage: Post::Stages::PUBLISHED
+        )
+
+        post.tags.create(name: 'sup')
+        expect(post.tagged_with?('yo')).to eq(false)
+      end
+    end
+  end
 end
 

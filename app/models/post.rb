@@ -42,6 +42,10 @@ class Post < ApplicationRecord
     posts.present?
   end
 
+  def tagged_with?(tag_name)
+    tags.any? { |tag| tag.name == tag_name }
+  end
+
   private
 
     def set_default_stage

@@ -3,7 +3,7 @@ module Brand
     layout 'brand'
 
     def index
-      @posts = Post.where(stage: Post::Stages::PUBLISHED).order('published_at DESC')
+      @posts = Post.includes(:tags).where(stage: Post::Stages::PUBLISHED).order('published_at DESC').select { |post| !post.tagged_with?('til') }
     end
 
     def show
