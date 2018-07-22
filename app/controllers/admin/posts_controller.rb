@@ -1,8 +1,5 @@
 module Admin
-  class PostsController < ApplicationController
-    layout 'admin'
-    before_action :authenticate
-
+  class PostsController < BaseController
     def index
       @published_posts = Post.order(published_at: :desc).all.select(&:published?)
       @draft_posts = Post.order(created_at: :desc).all.reject(&:published?)
@@ -70,14 +67,6 @@ module Admin
       post.unpublish
       post.save
       redirect_to admin_posts_path
-    end
-
-    def current_user
-      @current_user ||= User.find_by_id(session[:user_id])
-    end
-
-    def authenticate
-      redirect_to login_path unless current_user
     end
   end
 end

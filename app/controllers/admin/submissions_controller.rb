@@ -1,10 +1,6 @@
 require 'tempfile'
-
 module Admin
-  class SubmissionsController < ApplicationController
-    layout 'admin'
-    before_action :authenticate
-
+  class SubmissionsController < BaseController
     def index
       @submissions = Submission.where(exercise_id: params[:exercise_id]).order('created_at DESC')
     end
@@ -32,14 +28,6 @@ module Admin
       else
         render :json => {:errors => @submission.errors.full_messages }, :status => 400
       end
-    end
-
-    def authenticate
-      redirect_to login_path unless current_user
-    end
-
-    def current_user
-      @current_user ||= User.find_by_id(session[:user_id])
     end
   end
 end

@@ -1,9 +1,7 @@
 require 'rouge'
-module Admin
-  class ExercisesController < ApplicationController
-    layout 'admin'
-    before_action :authenticate
 
+module Admin
+  class ExercisesController < BaseController
     def index
       @exercises = Exercise.all
     end
@@ -44,14 +42,6 @@ module Admin
       formatter = Rouge::Formatters::HTMLInline.new(theme)
       lexer = Rouge::Lexers::Ruby.new
       @stuff = formatter.format(lexer.lex(@exercise.test)).html_safe
-    end
-
-    def authenticate
-      redirect_to login_path unless current_user
-    end
-
-    def current_user
-      @current_user ||= User.find_by_id(session[:user_id])
     end
   end
 end
