@@ -83,7 +83,8 @@ h1,h2,h3,h4 {
 #index a.index,
 #about a.about,
 #series a.series,
-#til a.til {
+#til a.til,
+#book_notes a.book_notes {
   color: #333;
   cursor: default;
 }

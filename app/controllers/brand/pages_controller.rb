@@ -15,5 +15,11 @@ module Brand
         post.published? && post.tagged_with?('til')
       end
     end
+
+    def book_notes
+      @posts = Post.all.order('published_at DESC').select do |post|
+        post.published? && post.tagged_with?('book notes')
+      end
+    end
   end
 end
