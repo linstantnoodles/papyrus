@@ -3,8 +3,8 @@
 .cards{data: {controller: 'search'}}
   %h2 Cards
   %label
-    Filter by tag
-    %input{type: 'text', data: { target: 'search.tag', action: 'keyup->search#filter' }}
+    Search
+    %input{type: 'text', data: { target: 'search.key', action: 'keyup->search#filter' }}
   - if @cards.empty?
     %p No cards yet!
   %table
