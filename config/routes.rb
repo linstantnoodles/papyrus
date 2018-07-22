@@ -31,7 +31,6 @@ Rails.application.routes.draw do
 
   scope module: 'brand' do
     get 'about', to: 'pages#about'
-    get 'series', to: 'pages#series'
     get 'til', to: 'pages#til'
     get 'book_notes', to: 'pages#book_notes'
     resources :posts, only: %i[index show], param: :slug do
