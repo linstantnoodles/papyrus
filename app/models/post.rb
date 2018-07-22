@@ -27,7 +27,7 @@ class Post < ApplicationRecord
   validates :stage, inclusion: { in: Stages.all, message: "%{value} is not a valid stage" }
 
   after_initialize :set_default_stage, if: :new_record?
-  before_save :check_parent_post
+  before_save :check_parent_post, :set_slug
 
   def publish
     self.stage = Stages::PUBLISHED
@@ -50,6 +50,10 @@ class Post < ApplicationRecord
 
     def set_default_stage
       self.stage ||= Stages::DRAFT
+    end
+
+    def set_slug
+      self.slug = title.parameterize
     end
 
     def check_parent_post

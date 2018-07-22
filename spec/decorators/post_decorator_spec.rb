@@ -22,10 +22,4 @@ RSpec.describe PostDecorator do
       expect(decorated_post).to have_received(:render_as_markdown).with(post.content)
     end
   end
-
-  describe '#MyHTML.lexer_name' do
-    it 'returns the correct lexer constant' do
-      expect(PostDecorator::MyHTML.lexer_name('python')).to eq('Python')
-    end
-  end
 end

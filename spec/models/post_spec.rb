@@ -42,6 +42,15 @@ RSpec.describe Post, :type => :model do
     expect(post.stage).to eq(Post::Stages::DRAFT)
   end
 
+  it "sets slug after save" do
+    post = Post.new(
+      title: 'test title haha 123',
+      content: 'test-content'
+    )
+    post.save
+    expect(post.slug).to eq('test-title-haha-123')
+  end
+
   it "can have many posts" do
     post_series = Post.create(title: 'title of my new series', content: 'about my new series')
     Post.create(title: 'post one', content: 'first post of series', post: post_series)

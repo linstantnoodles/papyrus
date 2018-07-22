@@ -26,7 +26,7 @@
       %tbody
         - @published_posts.each_with_index do |post, index|
           %tr{data: { target: 'search.record', tags: post.tags.map(&:name).join(', ')}}
-            %td=link_to post.title, edit_admin_post_path(id: post.id)
+            %td=link_to post.title, preview_post_path(slug: post.slug)
             - if post.published?
               %td=link_to 'Unpublish', unpublish_admin_post_path(id: post.id), data: {confirm:'Are you sure?'}
             - else

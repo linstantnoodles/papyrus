@@ -25,10 +25,10 @@ RSpec.describe Brand::PostsController, :type => :controller do
   describe 'show' do
     context 'when attempting to view draft post' do
       it 'returns 404' do
-        post = Post.create(title: 'test-title', content: 'test-content', stage: Post::Stages::DRAFT)
+        post = Post.create(title: 'test title', content: 'test-content', stage: Post::Stages::DRAFT)
 
         get :show, params: {
-          id: post.id
+          slug: 'test-title'
         }
 
         expect(response).to have_http_status(404)
@@ -36,14 +36,16 @@ RSpec.describe Brand::PostsController, :type => :controller do
     end
 
     context 'when attempting to view published post' do
-      it 'returns 200' do
-        post = Post.create(title: 'test-title', content: 'test-content', stage: Post::Stages::PUBLISHED)
+      context 'when visiting it by title slug' do
+        it 'returns 200' do
+          post = Post.create(title: 'test title', content: 'test-content', stage: Post::Stages::PUBLISHED)
 
-        get :show, params: {
-          id: post.id
-        }
+          get :show, params: {
+            slug: 'test-title'
+          }
 
-        expect(response).to have_http_status(200)
+          expect(response).to have_http_status(200)
+        end
       end
     end
   end

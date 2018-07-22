@@ -1,5 +1,5 @@
 %ul
   - posts.each do |post|
     %li
-      = link_to post.title, preview_post_path(post)
+      = link_to post.title, preview_post_path(slug: post.slug)
       = render partial: 'preview_descendent_posts', locals: { posts: post.child_posts }

@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     get 'about', to: 'pages#about'
     get 'series', to: 'pages#series'
     get 'til', to: 'pages#til'
-    resources :posts, only: %i[index show] do
+    resources :posts, only: %i[index show], param: :slug do
       get 'preview', on: :member
     end
   end

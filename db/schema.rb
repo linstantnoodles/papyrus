@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180429063705) do
+ActiveRecord::Schema.define(version: 20180721232110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,9 @@ ActiveRecord::Schema.define(version: 20180429063705) do
     t.string "stage"
     t.datetime "published_at"
     t.bigint "post_id"
+    t.string "slug"
     t.index ["post_id"], name: "index_posts_on_post_id"
+    t.index ["slug"], name: "index_posts_on_slug"
   end
 
   create_table "submissions", force: :cascade do |t|

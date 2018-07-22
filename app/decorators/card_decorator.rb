@@ -33,8 +33,9 @@ class CardDecorator
         gutter_class: 'rouge-gutter',
         code_class: 'rouge-code'
       })
-      lexer = Rouge::Lexers.const_get(language.capitalize.to_s).new
-      formatted_code_block = formatter.format(lexer.lex(code))
+      lexer = (language) ? Rouge::Lexer.find(language) : Rouge::Lexer.guess_by_source(code)
+      tokens = lexer.lex(code)
+      formatted_code_block = formatter.format(tokens)
       %(<div class="code-container">#{formatted_code_block}</div>)
     end
   end

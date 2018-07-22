@@ -34,3 +34,9 @@ Given(/^the post "([^"]*)" is a child of post "([^"]*)"$/) do |child_title, pare
   child_post = Post.find_by_title(child_title)
   child_post.update(parent_post: parent_post)
 end
+
+Given(/^the post "([^"]*)" has tag "([^"]*)"$/) do |title, tag_name|
+  post = Post.find_by_title(title)
+  tag = Tag.create(name: tag_name)
+  post.update(tags: [tag])
+end

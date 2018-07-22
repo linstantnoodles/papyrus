@@ -7,11 +7,11 @@ module Brand
     end
 
     def show
-      @post = PostDecorator.new(post: Post.find_by!(id: params[:id], stage: Post::Stages::PUBLISHED))
+      @post = PostDecorator.new(post: Post.find_by!(slug: params[:slug], stage: Post::Stages::PUBLISHED))
     end
 
     def preview
-      @post = PostDecorator.new(post: Post.find_by!(id: params[:id]))
+      @post = PostDecorator.new(post: Post.find_by!(slug: params[:slug]))
     end
   end
 end
