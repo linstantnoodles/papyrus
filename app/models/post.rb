@@ -42,8 +42,8 @@ class Post < ApplicationRecord
     posts.present?
   end
 
-  def tagged_with?(tag_name)
-    tags.any? { |tag| tag.name == tag_name }
+  def tagged_with?(names)
+    tags.any? { |tag| names.include?(tag.name) }
   end
 
   private

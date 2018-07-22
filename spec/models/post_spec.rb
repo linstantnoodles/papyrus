@@ -150,7 +150,7 @@ RSpec.describe Post, :type => :model do
         )
 
         post.tags.create(name: 'sup')
-        expect(post.tagged_with?('sup')).to eq(true)
+        expect(post.tagged_with?(['sup'])).to eq(true)
       end
     end
 
