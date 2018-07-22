@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   scope module: 'brand' do
     get 'about', to: 'pages#about'
     get 'til', to: 'pages#til'
-    get 'book_notes', to: 'pages#book_notes'
+    get 'book-notes', to: 'pages#book_notes'
     resources :posts, only: %i[index show], param: :slug do
       get 'preview', on: :member
     end
