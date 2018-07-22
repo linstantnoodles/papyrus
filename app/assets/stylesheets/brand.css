@@ -53,6 +53,18 @@ h1,h2,h3,h4 {
   font-size: 20px;
 }
 
+#logo #lin {
+  color: white;
+}
+
+#logo #nil {
+  color: #ccc;
+}
+
+#logo span::first-letter {
+  color: green;
+}
+
 #logout-btn {
   float: right;
   color: white;

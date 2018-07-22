@@ -10,7 +10,9 @@
     #branding
       #logo
         %a{href: root_path}
-          %span A.LIN
+          %span{id: 'lin'} LIN
+          %span{id: 'is'} IS
+          %span{id: 'nil'} NIL
       - if @current_user.present?
         = link_to 'Logout', logout_path, id: 'logout-btn'
     %ul#navigation
