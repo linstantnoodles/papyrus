@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root to: 'brand/posts#index'
 
+  namespace :api do
+    resources :posts, only: [:create]
+  end
+
   namespace :admin do
     get 'statistics', to: 'statistics#index'
     resources :posts do
