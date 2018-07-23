@@ -24,7 +24,7 @@ if subcommand == 'til'
   print "\n"
   data = {
     title: title,
-    content: content,
+    content: body,
     tags: 'til',
     stage: 'published'
   }
