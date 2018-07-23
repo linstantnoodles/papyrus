@@ -24,8 +24,9 @@ if subcommand == 'til'
   print "\n"
   data = {
     title: title,
-    body: body,
-    tags: 'til'
+    content: content,
+    tags: 'til',
+    stage: 'published'
   }
   api_endpoint = "http://www.linisnil.com/api/posts"
   uri = URI.parse(api_endpoint)
