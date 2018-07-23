@@ -32,7 +32,7 @@ if subcommand == 'til'
   uri = URI.parse(api_endpoint)
   http = Net::HTTP.new(uri.host, uri.port)
   request = Net::HTTP::Post.new(uri.request_uri)
-  request['Content-Type'] = 'applicaton/json'
+  request['Content-Type'] = 'application/json'
   request.body = data.to_json
   response = http.request(request)
   if response.code != '201'
