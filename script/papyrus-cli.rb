@@ -2,7 +2,7 @@
 require 'yaml'
 require 'net/http'
 require 'json'
-
+TIL_DIR = '/Users/alin/src/papyrus/.til/'
 subcommand = ARGV[0]
 subcommands = ['til']
 if !subcommands.include?(subcommand)
@@ -10,17 +10,16 @@ if !subcommands.include?(subcommand)
     exit
 end
 if subcommand == 'til'
+  new_til_file_path = "#{TIL_DIR}til-#{Time.now.strftime('%F')}.md"
   ftemplate = File.new('/Users/alin/src/papyrus/script/til_template.md', 'r')
-  system('cat /Users/alin/src/papyrus/script/til_template.md | vim - +"w til.md"')
-  til_file = File.new('til.md', 'r')
+  system("cat /Users/alin/src/papyrus/script/til_template.md | vim - +'w #{new_til_file_path}'")
+  til_file = File.new(new_til_file_path, 'r')
   content = til_file.read
   meta = YAML.load(content)
-  content_in_lines = IO.readlines("til.md")
-
+  content_in_lines = IO.readlines(new_til_file_path)
   title = meta['title']
   body = content_in_lines[3..content_in_lines.length - 1].join('')
-
-  print "Creating post with title #{title}...\n"
+  print "Publishing TIL #{title}...\n"
   print "\n"
   data = {
     title: title,
@@ -37,5 +36,7 @@ if subcommand == 'til'
   response = http.request(request)
   if response.code != '201'
     p response.body
+  else
+    print "Done!\n"
   end
 end
