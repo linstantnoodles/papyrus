@@ -1,3 +1,26 @@
 %h1 About
 
-%p I use this site to organize my knowledge.
+%p So this site is really cool and you should check it out because...
+
+%p
+  1) It's built with ruby on rails using TDD (you should check out the lovely cucumber tests) and you can run it yourself! Here's the
+  = succeed "." do
+    %a{:href => "https://github.com/linstantnoodles/papyrus"} code
+%p
+  2) It has a
+  %a{:href => "https://github.com/linstantnoodles/papyrus/blob/master/app/models/concerns/spaced_repetition.rb"} built-in spaced repetition system
+  using the
+  = succeed "." do
+    %a{:href => "https://www.supermemo.com/english/ol/sm2.htm"} SM2 algorithm
+%p
+  3) It comes packed with webpacker,
+  %a{:href => "https://github.com/linstantnoodles/papyrus/blob/master/app/javascript/controllers/search_controller.js"} StimulusJS
+  and reactJS so if you're all about single page apps, do you.
+%p
+  4) You can create
+  %a{:href => "https://github.com/linstantnoodles/papyrus/blob/master/app/models/post.rb#L19"} posts belonging to other posts
+  so it's posts all the way down.
+%p
+  5) Oh and there's a
+  %a{:href => "https://github.com/linstantnoodles/papyrus/blob/master/script/papy"} CLI
+  for publishing a post straight from your machine! (Not behind auth so ... PRs welcome)
