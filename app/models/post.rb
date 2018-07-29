@@ -28,10 +28,10 @@ class Post < ApplicationRecord
 
   after_initialize :set_default_stage, if: :new_record?
   before_save :check_parent_post, :set_slug
+  before_save :update_published_at, if: :published?
 
   def publish
     self.stage = Stages::PUBLISHED
-    self.published_at = Time.now
   end
 
   def unpublish
@@ -47,6 +47,10 @@ class Post < ApplicationRecord
   end
 
   private
+
+    def update_published_at
+      self.published_at ||= Time.now
+    end
 
     def set_default_stage
       self.stage ||= Stages::DRAFT

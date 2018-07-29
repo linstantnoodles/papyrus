@@ -42,6 +42,18 @@ RSpec.describe Post, :type => :model do
     expect(post.stage).to eq(Post::Stages::DRAFT)
   end
 
+  it "should set published date if stage is published" do
+    current_time = Time.now
+    allow(Time).to receive(:now).and_return(current_time)
+    post = Post.new(
+      title: 'test-title',
+      content: 'test-content',
+      stage: Post::Stages::PUBLISHED
+    )
+    post.save
+    expect(post.published_at).to eq(current_time)
+  end
+
   it "sets slug after save" do
     post = Post.new(
       title: 'test title haha 123',
@@ -98,6 +110,7 @@ RSpec.describe Post, :type => :model do
       )
 
       post.publish
+      post.save
       expect(post.stage).to eq(Post::Stages::PUBLISHED)
     end
 
@@ -108,6 +121,7 @@ RSpec.describe Post, :type => :model do
       )
 
       post.publish
+      post.save
       expect(post.published_at).to be > post.created_at
     end
   end
