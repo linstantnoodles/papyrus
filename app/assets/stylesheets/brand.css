@@ -1,107 +1,32 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require base
- *= require_tree ./brand
- *= require_self
- */
 
-p, ul, ol {
-  margin-bottom: 10px;
+
+/* Code blocks */
+.code-container .pre {
+    background-color: #fff;
+  }
+
+table.route-table {
+  background-color: white;
+  width: none;
 }
 
-h1,h2,h3,h4 {
-  margin-top: 10px;
-  margin-bottom: 10px;
+.rouge-gutter {
+    padding-right: 10px;
+    color: #d3d3d3;
 }
 
-#entry-content h2 {
-  font-size: 1.2em;
-}
-
-#container {
-  width: 800px;
-  margin: 0 auto;
-}
-
-/* Navigation bar */
-
-#branding {
-  width: 100%;
-  height: 50px;
-  background-color: black;
-}
-
-#logo {
-  padding-top: 13px;
-  padding-left: 10px;
-  float: left;
-}
-
-#logo a {
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-}
-
-#logo #lin {
-  color: white;
-}
-
-#logo #nil {
-  color: #ccc;
-}
-
-#logo span::first-letter {
-  color: green;
-}
-
-#logout-btn {
-  float: right;
-  color: white;
-  padding-top: 13px;
-  padding-right: 10px;
-  text-decoration: none;
-}
-
-#navigation {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  width: 100%;
-  background: #FAA819;
-  float: left;
-}
-
-#navigation li {
-  float: left;
-  padding: 0 5px;
-}
-
-#navigation a {
- text-decoration: none;
- color: #fff;
-}
-
-#navigation a:hover {
-  color: #333;
-}
-
-#index a.index,
-#about a.about,
-#til a.til,
-#book_notes a.book_notes {
-  color: #333;
-  cursor: default;
+.rouge-code {
+    background-color: #fff;
+    padding-right: 10px;
 }
 
 
+ol, ul {
+    list-style-position: inside;
+}
+
+code.prettyprint {
+    margin: 0;
+    background-color: #f6f8fa;
+    border-radius: 3px;
+}

@@ -1,5 +1,12 @@
-%h1 Posts
-%ul
-  - @posts.each_with_index do |post, index|
-    %article
-      %h2=link_to post.title, post_path(slug: post.slug), class: 'button'
+- @posts.each_with_index do |post, index|
+  %article#post-19.total-hentry.post-19.post.type-post.status-publish.format-standard.category-uncategorized.tag-boat.tag-lake
+    .entry-meta.ht-post-info
+      %span.entry-date.published.updated
+        %span.ht-month-year
+          = post.published_at.strftime('%B %Y')
+    .ht-post-wrapper
+      %header.entry-header
+        %h2.entry-title
+          = link_to post.title, post_path(slug: post.slug)
+        .entry-summary
+          %p=truncate(post.content, length: 150)
