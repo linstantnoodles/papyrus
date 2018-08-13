@@ -1,17 +1,13 @@
-
-
 /* Code blocks */
-.code-container .pre {
+.code-container pre {
     background-color: #fff;
   }
 
-table.route-table {
-  background-color: white;
-  width: none;
+.code-container table {
+  width: 0%;
 }
 
 .rouge-gutter {
-    padding-right: 10px;
     color: #d3d3d3;
 }
 
@@ -19,7 +15,6 @@ table.route-table {
     background-color: #fff;
     padding-right: 10px;
 }
-
 
 ol, ul {
     list-style-position: inside;

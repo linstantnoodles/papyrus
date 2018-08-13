@@ -1,10 +1,35 @@
-%h1{id: 'entry-title'}=@post.title
-#entry-content=@post.content
-%span="Last updated: #{@post.updated_at.strftime("%m/%d/%Y")}"
-- if @post.series?
-  - if @post.child_posts.select(&:published?).present?
-    %h2 Collection
-    .descendent_posts
-      = render partial: 'descendent_posts', locals: { posts: @post.child_posts.select(&:published?) }
-  - else
-    %p No posts have been published for this series yet!
+#ht-content.ht-site-content.ht-clearfix
+  %header.ht-main-header
+    .ht-container
+      %h1.ht-main-title="#{@post.title}"
+      %nav.breadcrumb-trail.breadcrumbs{role: 'navigation',
+                                        aria: { label:'Breadcrumbs' },
+                                        itemprop:'breadcrumb'}
+        %ul
+          %meta{name: 'numberOfItems', content: '2'}
+          %meta{name: 'itemListOrder', content: 'Ascending'}
+          %li.trail-item.trail-begin{itemprop: 'itemListElement', itemscope: '', itemtype: 'http://schema.org/ListItem'}
+            %a{href: "#{root_path}", rel: 'home', itemprop: 'item'}
+              %span{itemprop: 'name'} Home
+            %meta{itemprop: 'position', content:'1'}
+          %li.trail-item.trail-begin{itemprop: 'itemListElement', itemscope: '', itemtype: 'http://schema.org/ListItem'}
+            %a{href: "#{link_to @post.title, post_path(slug: @post.slug)}", itemprop: 'item'}
+              %span{itemprop: 'name'}=@post.title
+            %meta{itemprop: 'position', content:'1'}
+  .ht-container
+    #primary.content-area
+      #main.site-main
+        %article{id: "post-#{@post.id}"}
+          .entry-content
+            .entry-meta.ht-post-info
+              %span.entry-date.published.updated
+                %span.ht-day="#{@post.published_at.strftime("%d")}"
+                %span.ht-month-year="#{@post.published_at.strftime("%B %Y")}"
+            = @post.content
+  - if @post.series?
+    - if @post.child_posts.select(&:published?).present?
+      %h2 Collection
+      .descendent_posts
+        = render partial: 'descendent_posts', locals: { posts: @post.child_posts.select(&:published?) }
+    - else
+      %p No posts have been published for this series yet!
