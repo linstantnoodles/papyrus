@@ -24,15 +24,17 @@
         .ht-container.ht-clearfix
           #ht-site-branding
             %h1.ht-site-title
-              %a{:href => "http://linisnil.com", :rel => "home"} LINISNIL
+              %a{:href => "/", :rel => "home"} LINISNIL
             %p.ht-site-description
-              %a{:href => "http://linisnil.com", :rel => "home"} Alan Lin's blog on software
+              %a{:href => "/", :rel => "home"} Alan Lin's blog on software
           / .site-branding
           %nav#ht-site-navigation.ht-main-navigation
             .toggle-bar
               %span
             .ht-menu.ht-clearfix{:style => "display: none;"}
               %ul.sf-js-enabled.sf-arrows
+                %li.page_item.page-item-1
+                  %a{:href => "/til"} Today I Learned
                 %li.page_item.page-item-2
                   %a{:href => "/about"} About
             / #ht-site-navigation

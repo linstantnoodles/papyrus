@@ -1,5 +1,8 @@
-%h1 Today I Learned
-%ul
-  - @posts.each_with_index do |post, index|
-    %article
-      %h2=link_to post.title, post_path(slug: post.slug), class: 'button'
+.ht-container
+  #primary.content-area
+    %main#main.site-main
+      %h1 Today I Learned
+      %ul
+        - @posts.each_with_index do |post, index|
+          %article
+            %h2=link_to post.title, post_path(slug: post.slug), class: 'button'
